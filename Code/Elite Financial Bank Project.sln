@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankingEntities", "BankingE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankingExceptions", "BankingExceptions\BankingExceptions.csproj", "{E5FCBBBF-EAC0-4261-ABDA-59DEB50A533F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankingCommunication", "BankingCommunication\BankingCommunication.csproj", "{6D364946-BB29-4060-9DDA-E111AC562D49}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{E5FCBBBF-EAC0-4261-ABDA-59DEB50A533F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E5FCBBBF-EAC0-4261-ABDA-59DEB50A533F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E5FCBBBF-EAC0-4261-ABDA-59DEB50A533F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D364946-BB29-4060-9DDA-E111AC562D49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D364946-BB29-4060-9DDA-E111AC562D49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D364946-BB29-4060-9DDA-E111AC562D49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D364946-BB29-4060-9DDA-E111AC562D49}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

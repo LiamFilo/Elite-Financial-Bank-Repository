@@ -7,7 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BankingEntities\BankingEntities.csproj" />
     <ProjectReference Include="..\BankingEnumeration\BankingEnumeration.csproj" />
+    <ProjectReference Include="..\BankingExceptions\BankingExceptions.csproj" />
   </ItemGroup>
 
 </Project>

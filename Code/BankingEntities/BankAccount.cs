@@ -4,6 +4,7 @@ using System.Text;
 using System.IO;
 using System.Text.RegularExpressions;
 using BankingExceptions;
+using BankingEnumeration;
 
 namespace BankingEntities
 {
@@ -14,7 +15,7 @@ namespace BankingEntities
 	{
         #region Data Members
         protected decimal _balance;
-		public readonly string AccountNumber;
+		protected string _accountNumber;
 		#endregion
 
 		#region Constructors
@@ -30,18 +31,22 @@ namespace BankingEntities
         public virtual decimal Balance
 		{
 			get { return _balance; }
-			protected set{ } 
+			protected set{} 
 		}
+
+		public string AccountNumber
+		{
+			get { return _accountNumber; }
+			protected set
+			{
+                if (value.Length != 8 && Regex.IsMatch(value, @"^\d+$"))
+                    throw new InvalidUserInput(UserInputField.Bank_Account_Number);
+				_accountNumber = value;
+            }
+        }
 		#endregion
 
 		#region Methods
-		protected void isValidAccountNumber(string accountNumber)
-		{
-			if (accountNumber.Length != 8 && Regex.IsMatch(accountNumber, @"^\d+$"))
-				throw new GeneralException("The accountNumber is not valid");
-
-
-        }
 
 		protected virtual bool isValidCashFlowOperation(decimal amountToCheck)
 		{
@@ -49,11 +54,6 @@ namespace BankingEntities
 				return false;
 			return true;
 		}
-
-		//protected virtual void InitializeBalanceLimit(decimal balanceLimit)
-		//{
-		//	this._balance = balanceLimit;
-		//}
 
 		/// 
 		/// <param name="amount">represent the amount which passing into your bank account </param>
@@ -78,6 +78,7 @@ namespace BankingEntities
                 throw new InvalidOperationException("Invalid Transfer Operation.");
             Balance -= amount;
         }
+			        
 
 		public virtual void Withdraw(decimal amount){
             if (!this.isValidCashFlowOperation(amount))
