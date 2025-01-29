@@ -1,0 +1,600 @@
+﻿<Window x:Class="Client_Side.Windows.TransactionExecution"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:svg="http://sharpvectors.codeplex.com/svg/" 
+        xmlns:svg1="http://sharpvectors.codeplex.com/svgc/"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Client_Side.Windows"
+        mc:Ignorable="d"
+        Title="TransactionExecution" 
+        Height="1080" Width="1920"
+        WindowStyle="None"
+        WindowState="Maximized"
+        ResizeMode="NoResize">
+    <!-- Screen Definitation -->
+    <DockPanel
+      x:Name="dckpTransactionExecutionScreen"
+      Background="{StaticResource PrimaryBrush}"
+      LastChildFill ="True">
+
+        <!-- region Side Bar  -->
+        <StackPanel 
+          x:Name = "spSideBar"
+          DockPanel.Dock="Left"
+          Orientation="Vertical"
+          Background="{StaticResource PrimaryBrush}"
+          Margin = "10">
+
+            <!-- Logo -->
+            <svg1:SvgViewbox 
+              x:Name ="svgLogoPicture"
+              Stretch="None" 
+              HorizontalAlignment="Center" 
+              VerticalAlignment="Top"
+              Margin = "0,0,0,10"
+              Source="\Resources\Pictures\Logo.svg" />
+
+            <!-- Buttons -->
+
+            <!-- Dashboard Button -->
+            <Border  
+                  x:Name ="bdrDashboardButton"
+                  Style="{StaticResource SelectedBorderButtonStyle}">
+                <Button 
+                      x:Name="btnDashboard" 
+                      Style ="{StaticResource SelectedButtonStyle}">
+                    <StackPanel 
+                          x:Name="spDashboardButton"
+                          Margin="0,2" 
+                          VerticalAlignment="Center" 
+                          Orientation="Horizontal">
+                        <svg1:SvgViewbox 
+                                  x:Name ="svgDashboardButtonIcon"
+                                  Source="\Resources\Pictures\Dashboard\SidaBar\icnOfDashboardButton.svg"
+                                  Stretch="None"
+                                  Margin="0,0,32,0">
+                        </svg1:SvgViewbox>
+                        <Label
+                              x:Name ="lblDashboardButton"
+                              Content=" Dashboard" 
+                              FontFamily="{StaticResource LoraFont}" 
+                              Foreground="White">
+                        </Label>
+                    </StackPanel>
+                </Button>
+            </Border>
+
+            <!-- Transfer Button -->
+            <Border  
+                   x:Name ="bdrTransferButton"
+                   Style="{StaticResource UnselectedBorderButtonStyle}" >
+                <Button 
+                      x:Name="btnTransfer" 
+                      Style="{StaticResource UnselectedButtonStyle}">
+                    <StackPanel 
+                          x:Name="spTransferButton"
+                          Orientation="Horizontal" 
+                          Margin="2">
+                        <svg1:SvgViewbox 
+                              x:Name ="svgTransferButtonIcon"
+                              Source="\Resources\Pictures\Dashboard\SidaBar\icnOfTransferButton.svg"
+                              Opacity="0.5"
+                              Margin="0,0,32,0"></svg1:SvgViewbox>
+                        <Label 
+                              x:Name="lblTransferButton"
+                              Content="Transfer" 
+                              Style="{StaticResource UnselectedButtonLabelStyle}">
+                        </Label>
+                    </StackPanel>
+                </Button>
+            </Border>
+
+            <!-- Withdraw Button -->
+            <Border  
+                   x:Name ="bdrWithdrawButton"
+                   Style="{StaticResource UnselectedBorderButtonStyle}" >
+                <Button 
+                      x:Name="btnWithdraw" 
+                      Style="{StaticResource UnselectedButtonStyle}">
+                    <StackPanel 
+                          x:Name="spWithdrawButton"
+                          Orientation="Horizontal" 
+                          Margin="2">
+                        <svg1:SvgViewbox 
+                              x:Name ="svgWithdrawButtonIcon"
+                              Source="\Resources\Pictures\Dashboard\SidaBar\icnOfWithdrawButton.svg"
+                              Opacity="0.5"
+                              Margin="0,0,32,0"></svg1:SvgViewbox>
+                        <Label 
+                              x:Name="lblWithdrawButton"
+                              Content="Withdraw" 
+                              Style="{StaticResource UnselectedButtonLabelStyle}">
+                        </Label>
+                    </StackPanel>
+                </Button>
+            </Border>
+
+            <!-- Deposit Button -->
+            <Border  
+                    x:Name ="bdrDepositButton"
+                    Style="{StaticResource UnselectedBorderButtonStyle}" >
+                <Button 
+                       x:Name="btnDeposit" 
+                       Style="{StaticResource UnselectedButtonStyle}">
+                    <StackPanel 
+                           x:Name="spDepositButton"
+                           Orientation="Horizontal" 
+                           Margin="2">
+                        <svg1:SvgViewbox 
+                              x:Name ="svgDepositButtonIcon"
+                              Source="\Resources\Pictures\Dashboard\SidaBar\iconOfDepositButton.svg"
+                              Opacity="0.5"
+                              Margin="0,0,32,0"></svg1:SvgViewbox>
+                        <Label 
+                               x:Name="lblDepositButton"
+                               Content="Deposit" 
+                               Style="{StaticResource UnselectedButtonLabelStyle}">
+                        </Label>
+                    </StackPanel>
+                </Button>
+            </Border>
+
+            <!-- History Button -->
+            <Border  
+                x:Name ="bdrHistoryButton"
+                Style="{StaticResource UnselectedBorderButtonStyle}" >
+                <Button 
+                       x:Name="btnHistory" 
+                       Style="{StaticResource UnselectedButtonStyle}">
+                    <StackPanel 
+                           x:Name="spHistoryButton"
+                           Orientation="Horizontal" 
+                           Margin="2">
+                        <svg1:SvgViewbox 
+                               Source="\Resources\Pictures\Dashboard\SidaBar\iconOfHistoryButton.svg"
+                               Opacity="0.5"
+                               Margin="0,0,32,0">
+                        </svg1:SvgViewbox>
+                        <Label 
+                               x:Name="lblHistoryButton"
+                               Content="History" 
+                               Style="{StaticResource UnselectedButtonLabelStyle}">
+                        </Label>
+                    </StackPanel>
+                </Button>
+            </Border>
+
+
+            <!-- Settings Button -->
+            <Border  
+                   x:Name ="bdrSettingsButton"
+                   Style="{StaticResource UnselectedBorderButtonStyle}" 
+                   VerticalAlignment="Bottom">
+                <Button 
+                      x:Name="btnSettings" 
+                      Style="{StaticResource UnselectedButtonStyle}">
+                    <StackPanel 
+                          x:Name="spSettingsButton"
+                          Orientation="Horizontal" 
+                          Margin="2">
+                        <svg1:SvgViewbox 
+                              x:Name ="svgSettingsButtonIcon"
+                              Source="\Resources\Pictures\Dashboard\SidaBar\icnOfTransferButton.svg"
+                              Opacity="0.5"
+                              Margin="0,0,32,0"></svg1:SvgViewbox>
+                        <Label 
+                              x:Name="lblSettingsButton"
+                              Content="Settings" 
+                              Style="{StaticResource UnselectedButtonLabelStyle}">
+                        </Label>
+                    </StackPanel>
+                </Button>
+            </Border>
+
+
+        </StackPanel>
+        <!-- endregion  -->
+
+        <!-- region Header -->
+        <Border 
+          x:Name="bdrHeader"
+          Background= "White" 
+          Padding="30,30,30,30"
+          DockPanel.Dock="Top"
+          BorderThickness="0">
+            <StackPanel 
+              Orientation="Horizontal" 
+              FlowDirection="RightToLeft" 
+              Width="Auto" 
+              Height="Auto" >
+                <svg1:SvgViewbox
+                  x:Name="svgDropDownArrow"
+                  Width="34.77"
+                  Height="34.77"
+                  Margin="0,0,15,0"
+                  Source="\Resources\Pictures\Dashboard\Header\icon.svg">
+                </svg1:SvgViewbox>
+                <Label 
+                  x:Name="lblUserName"
+                  Content="Liam Filo" 
+                  Height="Auto"
+                  FontFamily="{StaticResource LoraFont}"
+                  Width="Auto"
+                  FontSize="24"
+                  FontWeight="SemiBold" 
+                  VerticalContentAlignment="Center"
+                  Margin="0,0,15,0">
+                </Label>
+                <svg1:SvgViewbox
+                  x:Name="svgProfilePicture"
+                  Source="\Resources\Pictures\Dashboard\Header\Profile Picture.svg"
+                  Stretch="None"
+                  Margin="0,0,15,0">
+                </svg1:SvgViewbox>
+                <svg1:SvgViewbox
+                  x:Name="svgNotificationIcon"
+                  Source="\Resources\Pictures\Dashboard\Header\Ring Button.svg"
+                  Stretch="None"
+                  Margin="0,10">
+                </svg1:SvgViewbox>
+            </StackPanel>
+        </Border>
+        <!-- endregion  -->
+        
+        <!-- region Titles -->
+        <Border
+          x:Name="bdrTitles"
+          Background="{StaticResource BackgroundGrayColorBrush}"
+          DockPanel.Dock="Top"
+          BorderThickness="0">
+            <StackPanel 
+              x:Name="spText"
+              Orientation="Vertical"
+              Background="{StaticResource BackgroundGrayColorBrush}"
+              Margin="40,15,40,7.5">
+                <Label  
+                  x:Name="lblDashboardMainTitle" 
+                  Content="Good morning Liam" 
+                  Style="{StaticResource MainTitleStyle}" 
+                  Margin="0,0,0,-15">
+                </Label>
+                <TextBlock>
+                    <Label  
+                          x:Name="lblDashboardSecondaryTitle" 
+                          Content="Your balance is" 
+                          Style="{StaticResource  SecondaryTitleStyle}">
+                    </Label>
+
+
+                    <Label  
+                          x:Name="lblDashboardSecondaryTitleBalanceNumber" 
+                          Content="186,001" 
+                          Style="{StaticResource  SecondaryTitleStyle}"
+                          FontWeight="Bold"
+                          Foreground="{StaticResource SuccessBrushColor}"
+                          Margin="-8,0,0,0">
+                    </Label>
+                </TextBlock>
+                
+            </StackPanel>
+        </Border>
+        <!-- endregion  -->
+
+        <!-- region Transactions Buttons Components -->
+        <Border
+          Background="{StaticResource BackgroundGrayColorBrush}"
+          DockPanel.Dock="Top"
+          BorderThickness="0">
+
+
+            <StackPanel
+                x:Name="spTransacionTypesComponents"
+                Orientation="Vertical"
+                Margin="40,7.5,40,7.5">
+
+                <Label  
+                  x:Name="lblInstructionTitle" 
+                  Content="Choose transaction" 
+                  Style="{StaticResource SecondaryTitleStyle}" >
+                </Label>
+
+                <Grid
+                      x:Name="grpTransactionTypeComponentButtons"
+                      Background="{StaticResource BackgroundGrayColorBrush}">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    
+                    <!-- region Transfer Component -->
+                    <Border  
+                          x:Name="bdrTransferComponent"
+                          Style="{StaticResource SelectedTransactionComponentButtonBorderStyle}"
+                        Grid.Column="0"
+                        Grid.Row="0">
+
+                        <StackPanel
+                          x:Name="spTransfer"
+                          Orientation="Vertical"
+                            VerticalAlignment="Center">
+                
+
+
+                            <!-- Icon -->
+                            <svg1:SvgViewbox
+                                  Source="\Resources\Pictures\Dashboard\SidaBar\icnOfTransferButton.svg"
+                                  Stretch="UniformToFill" 
+                                  HorizontalAlignment="Center" >
+                            </svg1:SvgViewbox>
+
+                            <!-- Amount -->
+                            <TextBlock 
+                                  x:Name="txtblkTransfer"
+                                  Text="Transfer" 
+                                  Style="{StaticResource SelectedTransactionComponentButtonLabelStyle}"
+                                HorizontalAlignment="Center">
+                            </TextBlock>
+                        </StackPanel>
+                    </Border>
+                    <!-- endregion -->
+
+                    <!-- region Withdraw Component -->
+                    <Border  
+                          x:Name="bdrWithdrawComponent"
+                          Style="{StaticResource UnselectedTransactionComponentButtonBorderStyle}"
+                        Grid.Column="2"
+                        Grid.Row="0">
+                        <StackPanel
+                              x:Name="spWithdraw"
+                              Orientation="Vertical"
+                            VerticalAlignment="Center">
+
+
+
+                            <!-- Icon -->
+                            <svg1:SvgViewbox
+                                  Source="\Resources\Pictures\Execution Transaction\Icons\icnSelectedWithdraw.svg"
+                                  Stretch="UniformToFill" 
+                                  HorizontalAlignment="Center" >
+                            </svg1:SvgViewbox>
+
+                            <!-- Amount -->
+                            <TextBlock 
+                                  x:Name="txtblkWithdraw"
+                                  Text="Withdraw" 
+                                  Style="{StaticResource UnselectedTransactionComponentButtonLabelStyle}"
+                                HorizontalAlignment="Center">
+                            </TextBlock>
+                        </StackPanel>
+                    </Border>
+                    <!-- endregion -->
+
+                    <!-- region Deposit Component -->
+                    <Border  
+                      x:Name="bdrDepositComponent"
+                      Style="{StaticResource UnselectedTransactionComponentButtonBorderStyle}"
+                        Grid.Column="1"
+                        Grid.Row="0">
+                        <StackPanel
+                          x:Name="spDeposit"
+                          Orientation="Vertical"
+                            VerticalAlignment="Center">
+
+
+
+                            <!-- Icon -->
+                            <svg1:SvgViewbox
+                                  x:Name="svgDepositIcon"
+                                  Source="\Resources\Pictures\Execution Transaction\Icons\icnSelectedDeposit.svg"
+                                  Stretch="UniformToFill" 
+                                  HorizontalAlignment="Center" >
+                            </svg1:SvgViewbox>
+
+                            <!-- Transaction Text -->
+                            <TextBlock 
+                                  x:Name="txtblkDeposit"
+                                  Text="Deposit" 
+                                  Style="{StaticResource UnselectedTransactionComponentButtonLabelStyle}"
+                                HorizontalAlignment="Center">
+                            </TextBlock>
+                        </StackPanel>
+                    </Border>
+                    <!-- endregion -->
+
+                    
+                </Grid>
+            </StackPanel>
+            
+        </Border>
+        <!-- endregion  -->
+
+        <!-- region Input Region -->
+        <Border
+              Background="{StaticResource BackgroundGrayColorBrush}"
+              DockPanel.Dock="Bottom"
+              Padding="40,15,40,30">
+            
+              <!-- region Input Components -->
+                    <Border        
+                          x:Name="bdrInputComponent"
+                          CornerRadius ="35"
+                          Padding="15"
+                          Background="{StaticResource ComponentColorBrushColor}"
+                          Margin="0,0,30,0"
+                        HorizontalAlignment ="Left"
+                        VerticalAlignment="Top">
+
+                          <Grid
+                            x:Name="gpInput">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"></RowDefinition>
+                                <RowDefinition Height="auto"></RowDefinition>
+                                <RowDefinition Height="auto"></RowDefinition>
+                                <RowDefinition Height="auto"></RowDefinition>
+                                <RowDefinition Height="auto"></RowDefinition>
+                                <RowDefinition Height="auto"></RowDefinition>
+                                <RowDefinition Height="auto"></RowDefinition>
+                                <RowDefinition Height="auto"></RowDefinition>
+                                <RowDefinition Height="auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    
+                    
+                        <Label
+                        x:Name="lblInstruction"
+                        Style="{StaticResource DescriptionUIComponentText}"
+                        Content="Please enter details transaction here"
+                        Grid.Row="0">
+                    </Label>
+                    
+                    <!-- Expnense and Income buttons -->
+                    <StackPanel
+                        x:Name="spLeftHeaderGraphButtons"
+                        Orientation="Horizontal"
+                        DockPanel.Dock="Left"
+                        Grid.Row="1">
+                        <Border
+                            x:Name="bdrExpenseButton"
+                            Style="{StaticResource SelectedGraphButtonBorderStyle}">
+                            <Button 
+                                x:Name="btnExpense"
+                                Content="Expense"
+                                Style="{StaticResource SelectedGraphButtonStyle}">
+                            </Button>
+                        </Border>
+
+
+                        
+                        <Border
+                          x:Name="bdrIncomeButton"
+                          Style="{StaticResource UnselectedGraphButtonBorderStyle}">
+                          
+                            <Button 
+                              x:Name="btnIncome"
+                              Content="Income"
+                              Style="{StaticResource UnselectedGraphButtonStyle}">
+                            </Button>
+                        </Border>
+                    </StackPanel>
+                    
+                    <!--  #region ID Number Section -->
+                        <Label 
+                            Content="ID Number" 
+                            Foreground = "{StaticResource PrimaryBrush}" 
+                            Style="{StaticResource DescriptionUIComponentText}"
+                            Grid.Row="2">
+                        </Label>
+
+                        <Border 
+                            x:Name="bdrTextBoxIdNumber"
+                            Style="{StaticResource TextBoxBorderStyle}"
+                            Margin="0,0,0,15"
+                            Grid.Row="3">
+                            <TextBox 
+                                x:Name="txbIDNumber"
+                                Style="{StaticResource TextBoxStyle}">
+                            </TextBox>
+                        </Border>
+                  
+                    <!--  #endregion  -->
+
+                    <!--  #region Amount Section -->
+                    <Label 
+                        Content="Amount Number" 
+                        Foreground = "{StaticResource PrimaryBrush}" 
+                        Style="{StaticResource DescriptionUIComponentText}"
+                        Grid.Row="4">
+                    </Label>
+
+                    <Border 
+                        x:Name="bdrTextBoxAmount"
+                        Style="{StaticResource TextBoxBorderStyle}"
+                        Margin="0,0,0,15"
+                        Grid.Row="5">  
+                        <TextBox 
+                            x:Name="txbAmount"
+                            Style="{StaticResource TextBoxStyle}">
+                        </TextBox>
+                    </Border>
+
+                    <!--  #endregion  -->
+
+                    <!--  #region Reason For Transfer Section -->
+                    <Label 
+                        Content="Reason For Transfer" 
+                        Foreground = "{StaticResource PrimaryBrush}" 
+                        Style="{StaticResource DescriptionUIComponentText}"
+                        Grid.Row="6">
+                    </Label>
+
+                    <Border 
+                        x:Name="bdrTextBoxReasonForTransfer"
+                        Style="{StaticResource TextBoxBorderStyle}"
+                        Margin="0,0,0,15"
+                        Grid.Row="7">
+                        <TextBox 
+                            x:Name="txbReasonForTransfer"
+                            Style="{StaticResource TextBoxStyle}">
+                        </TextBox>
+                    </Border>
+                    <!--  #endregion  -->
+
+                    <!--  #region Buttons -->
+                    <DockPanel
+                        x:Name="dpButtons"
+                        Grid.Row="8">
+
+                        <Border 
+                            BorderBrush="{StaticResource WhiteBlueBrushColor}" 
+                            Style="{StaticResource GeneralBorderForButtonStyle}"
+                            DockPanel.Dock="Left"
+                            HorizontalAlignment="Left">
+                            <Button 
+                                x:Name="btnExecute" 
+                                Content="Execute" 
+                                Background="{StaticResource WhiteBlueBrushColor}" 
+                                Foreground="White" 
+                                Style="{StaticResource GeneralButtonStyle}">
+                            </Button>
+                        </Border>
+
+                        <Border 
+                            BorderBrush="{StaticResource FailBrushColor}" 
+                            Style="{StaticResource GeneralBorderForButtonStyle}"
+                            DockPanel.Dock="Right"
+                            HorizontalAlignment="Right"
+                            Margin="15,0,0,0">
+                            <Button 
+                                x:Name="btnClear" 
+                                Content="Clear" 
+                                Background="{StaticResource FailBrushColor}" 
+                                Foreground="White" 
+                                Style="{StaticResource GeneralButtonStyle}">
+                            </Button>
+                        </Border>
+                    </DockPanel>          
+                    <!-- endregion  -->
+
+                </Grid>
+
+                </Border>
+                <!-- endregion  -->           
+        </Border>
+        <!-- endregion -->
+
+    </DockPanel>
+</Window>

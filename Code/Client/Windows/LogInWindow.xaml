@@ -1,0 +1,146 @@
+﻿<Window x:Class="Client_Side.Windows.LogInWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Client_Side.Windows"
+        mc:Ignorable="d"
+        Title="LogInWindow" Height="1080" Width="1920.5"
+        WindowStyle="None"
+        WindowState="Maximized"
+        ResizeMode="NoResize">
+    <Grid
+        x:Name="grLogInWindow">
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        
+        <Image
+            x:Name="imgLeftSide"
+            Grid.Column="0" 
+            Source="\Resources\Pictures\Left Side Black.png" 
+            Stretch="UniformToFill"  
+            HorizontalAlignment="Left"/>
+
+        <StackPanel
+            x:Name="spInputRegion"
+            Grid.Column="1" 
+            Orientation="Vertical"  
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Center">
+
+            <!--#region Titles -->
+            <Label 
+                    x:Name ="lblMainTitle" 
+                    Content="Welcome Back!" 
+                    Style="{StaticResource MainTitleStyle}">
+            </Label>
+
+            <Label 
+                 x:Name="lblSecondaryTitle"
+                 Content="Login to continue" 
+                 Style="{StaticResource SecondaryTitleStyle}" 
+                 Margin="2,-20,0,45">
+            </Label>
+            <!--#endregion -->
+
+
+            <!--  #region ID Number Section -->
+            <Label 
+                        Content="ID Number" 
+                        Foreground = "{StaticResource PrimaryBrush}" 
+                        Style="{StaticResource DescriptionUIComponentText}">
+            </Label>
+            <Border 
+                        x:Name="bdrTextBoxIdNumber"
+                        Style="{StaticResource TextBoxBorderStyle}"
+                        Margin="0,0,0,45">
+                <TextBox 
+                                x:Name="txbIDNumber"
+                                Style="{StaticResource TextBoxStyle}">
+                </TextBox>
+            </Border>
+            <!--  #endregion  -->
+
+            <!--  #region PhoneNumber Section -->
+            <Label 
+            x:Name="lblPhoneNumber"
+            Content="Phone Number" 
+            Foreground = "{StaticResource PrimaryBrush}" 
+            Style="{StaticResource DescriptionUIComponentText}">
+            </Label>
+            <Border 
+            x:Name="bdrTextBoxPhoneNumber"
+            Style="{StaticResource TextBoxBorderStyle}">
+                <TextBox 
+                    x:Name="txbPhoneNumber"
+                    Style="{StaticResource TextBoxStyle}">
+                </TextBox>
+            </Border>
+            <!--  #endregion  -->
+
+            <DockPanel 
+                x:Name="dpButtons"
+                Margin="0,3,0,60">
+                <CheckBox 
+                        x:Name="ckbRememberMe"
+                        HorizontalAlignment="Left"
+                        DockPanel.Dock="Left"
+                        VerticalAlignment="Center" 
+                        Content="Remember me"  
+                        FontSize="14" 
+                        FontFamily="{StaticResource LoraFont}"
+                        Foreground="{StaticResource PrimaryBrush}" >
+                </CheckBox>
+                <Label 
+                        x:Name="lblForgetPassword"
+                        Content="Forget Password" 
+                        FontSize="14"  
+                        Foreground = "{StaticResource PrimaryBrush}" 
+                        FontStyle="Normal" 
+                        DockPanel.Dock="Right"
+                        FontWeight="Normal" 
+                        FontFamily="{StaticResource LoraFont}" 
+                        VerticalAlignment="Center" 
+                        HorizontalAlignment="Right">
+                </Label>
+            </DockPanel>
+
+            <Border 
+                    BorderBrush="{StaticResource PrimaryBrush}" 
+                    Style="{StaticResource GeneralBorderForButtonStyle}">
+                <Button 
+                        x:Name="btnLogin" 
+                        Content="Login" 
+                        Background="{StaticResource PrimaryBrush}" 
+                        Foreground="White" 
+                        Style="{StaticResource GeneralButtonStyle}">
+                </Button>
+            </Border>
+
+            <DockPanel 
+                    HorizontalAlignment="Center">
+                <Label 
+                        Content="Don’t have an account?" 
+                        FontSize="14"  
+                        Foreground = "{StaticResource BlackGrayBrush}" 
+                        FontStyle="Normal" 
+                        FontWeight="Bold" 
+                        FontFamily="{StaticResource LoraFont}" 
+                        Margin="0,0,-2,0">
+                </Label>
+                <TextBlock 
+                        Text="Sign Up" 
+                        FontWeight="Bold" 
+                        FontSize= "14" 
+                        Foreground="{StaticResource PrimaryBrush}" 
+                        FontFamily="{StaticResource LoraFont}" 
+                        VerticalAlignment="Center" 
+                        TextDecorations ="Underline" >
+                </TextBlock>
+            </DockPanel>
+        </StackPanel>
+    </Grid>
+</Window>

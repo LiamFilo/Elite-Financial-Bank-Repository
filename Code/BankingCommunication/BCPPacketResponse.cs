@@ -20,5 +20,9 @@ namespace BankingCommunication
             BankAccountId = bankAccountId;
         }
 
+        public void IsValidPacket()
+        {
+            //Need to implement....
+        }
     }
 }

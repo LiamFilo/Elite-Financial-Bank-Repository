@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BankingCommunication\BankingCommunication.csproj" />
+    <ProjectReference Include="..\BankingEntities\BankingEntities.csproj" />
+    <ProjectReference Include="..\BankingEnumeration\BankingEnumeration.csproj" />
+    <ProjectReference Include="..\BankingExceptions\BankingExceptions.csproj" />
+  </ItemGroup>
+
+</Project>

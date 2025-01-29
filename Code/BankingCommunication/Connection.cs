@@ -12,6 +12,10 @@ namespace BankingCommunication
         private const string SERVER_IP = "127.21.12.4"; // Can make configurable
         private const int SERVER_PORT = 43;            // Can make configurable
         private const int DELAY_IN_MILLISECONDS = 100; // Typo fixed (DELEY -> DELAY)
+        public event EventHandler<bool> ConnectionStatusChanged;
+        public bool IsConnected {get; private set;}
+
+
 
         public event EventHandler<PacketReceivedEventArgs> GotPacket;
 
@@ -26,12 +30,14 @@ namespace BankingCommunication
             {
                 _networkStream?.Dispose();
                 _networkStream = value;
+                IsConnected = false;
             }
         }
 
         public Connection()
         {
             _cancellationTokenSource = new CancellationTokenSource();
+
         }
 
         // **Added: ConnectAsync method to initialize the socket and establish connection**
@@ -42,6 +48,9 @@ namespace BankingCommunication
                 _socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
                 await _socket.ConnectAsync(SERVER_IP, SERVER_PORT); // Establish connection
                 NetworkStream = new NetworkStream(_socket, true);
+
+                // Start monitoring connection status
+                _ = MonitorConnectionStatusAsync();
             }
             catch (Exception ex)
             {
@@ -113,7 +122,7 @@ namespace BankingCommunication
         /// </summary>
         public async Task SendPacketAsync(IPacket packetToSend)
         {
-            ValidatePacket(packetToSend); // **Reintroduced packet validation**
+            
 
             try
             {
@@ -130,30 +139,29 @@ namespace BankingCommunication
             }
         }
 
-        /// <summary>
-        /// Validates the packet data to ensure all required fields are present.
-        /// </summary>
-        private static void ValidatePacket(IPacket packetToServer) // **Reintroduced validation logic**
-        {
-            if (packetToServer == null || packetToServer.Command == null || string.IsNullOrEmpty(packetToServer.UserID))
-            {
-                throw new ArgumentException("Invalid packet data. Sending aborted.");
-            }
-
-            if (packetToServer.Command.ExecutionDate < DateTime.Now)
-            {
-                throw new ArgumentException("ExecutionDate cannot be in the past.");
-            }
-
-            if (packetToServer.Command is BankOperationCommand operationCommand && string.IsNullOrWhiteSpace(operationCommand.AccountNumber))
-            {
-                throw new ArgumentException("AccountNumber is required for bank operations.");
-            }
-        }
-
+        
         /// <summary>
         /// Releases unmanaged resources and gracefully shuts down connections.
         /// </summary>
+     
+        private async Task MonitorConnectionStatusAsync()
+        {
+            bool previousStatus = IsConnected;
+
+            while (!_cancellationTokenSource.Token.IsCancellationRequested)
+            {
+                bool currentStatus = IsConnected;
+
+                if (currentStatus != previousStatus)
+                {
+                    ConnectionStatusChanged?.Invoke(this, currentStatus);
+                    previousStatus = currentStatus;
+                }
+
+                await Task.Delay(DELAY_IN_MILLISECONDS);
+            }
+        }
+
         public void Dispose()
         {
             try
@@ -174,6 +182,7 @@ namespace BankingCommunication
             {
                 throw new InvalidOperationException("Error in Dispose.", ex);
             }
+
         }
     }
 }

@@ -1,0 +1,1021 @@
+﻿<Window x:Class="Client_Side.Windows.Dashboard"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Client_Side.Windows"
+        xmlns:svg="http://sharpvectors.codeplex.com/svg/" 
+        xmlns:svg1="http://sharpvectors.codeplex.com/svgc/"
+        mc:Ignorable="d"
+        Title="Dashboard" Height="1080" Width="1920"
+        WindowStyle="None"
+        WindowState="Maximized"
+        ResizeMode="NoResize">
+
+    <!-- Screen Definitation -->
+    <DockPanel
+        x:Name="dckpLogInScreen"
+        Background="{StaticResource PrimaryBrush}"
+        LastChildFill ="True">
+
+        <!-- region Side Bar  -->
+        <StackPanel 
+            x:Name = "spSideBar"
+            DockPanel.Dock="Left"
+            Orientation="Vertical"
+            Background="{StaticResource PrimaryBrush}"
+            Margin = "10">
+
+            <!-- Logo -->
+            <svg1:SvgViewbox 
+                x:Name ="svgLogoPicture"
+                Stretch="None" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Top"
+                Margin = "0,0,0,10"
+                Source="\Resources\Pictures\Logo.svg" />
+
+            <!-- Buttons -->
+
+            <!-- Dashboard Button -->
+            <Border  
+                    x:Name ="bdrDashboardButton"
+                    Style="{StaticResource SelectedBorderButtonStyle}">
+                <Button 
+                        x:Name="btnDashboard" 
+                        Style ="{StaticResource SelectedButtonStyle}">
+                    <StackPanel 
+                            x:Name="spDashboardButton"
+                            Margin="0,2" 
+                            VerticalAlignment="Center" 
+                            Orientation="Horizontal">
+                        <svg1:SvgViewbox 
+                                    x:Name ="svgDashboardButtonIcon"
+                                    Source="\Resources\Pictures\Dashboard\SidaBar\icnOfDashboardButton.svg"
+                                    Stretch="None"
+                                    Margin="0,0,32,0">
+                        </svg1:SvgViewbox>
+                        <Label
+                                x:Name ="lblDashboardButton"
+                                Content=" Dashboard" 
+                                FontFamily="{StaticResource LoraFont}" 
+                                Foreground="White">
+                        </Label>
+                    </StackPanel>
+                </Button>
+            </Border>
+
+            <!-- Transfer Button -->
+            <Border  
+                     x:Name ="bdrTransferButton"
+                     Style="{StaticResource UnselectedBorderButtonStyle}" >
+                <Button 
+                        x:Name="btnTransfer" 
+                        Style="{StaticResource UnselectedButtonStyle}">
+                    <StackPanel 
+                            x:Name="spTransferButton"
+                            Orientation="Horizontal" 
+                            Margin="2">
+                        <svg1:SvgViewbox 
+                                x:Name ="svgTransferButtonIcon"
+                                Source="\Resources\Pictures\Dashboard\SidaBar\icnOfTransferButton.svg"
+                                Opacity="0.5"
+                                Margin="0,0,32,0"></svg1:SvgViewbox>
+                        <Label 
+                                x:Name="lblTransferButton"
+                                Content="Transfer" 
+                                Style="{StaticResource UnselectedButtonLabelStyle}">
+                        </Label>
+                    </StackPanel>
+                </Button>
+            </Border>
+
+            <!-- Withdraw Button -->
+            <Border  
+                     x:Name ="bdrWithdrawButton"
+                     Style="{StaticResource UnselectedBorderButtonStyle}" >
+                <Button 
+                        x:Name="btnWithdraw" 
+                        Style="{StaticResource UnselectedButtonStyle}">
+                    <StackPanel 
+                            x:Name="spWithdrawButton"
+                            Orientation="Horizontal" 
+                            Margin="2">
+                        <svg1:SvgViewbox 
+                                x:Name ="svgWithdrawButtonIcon"
+                                Source="\Resources\Pictures\Dashboard\SidaBar\icnOfWithdrawButton.svg"
+                                Opacity="0.5"
+                                Margin="0,0,32,0"></svg1:SvgViewbox>
+                        <Label 
+                                x:Name="lblWithdrawButton"
+                                Content="Withdraw" 
+                                Style="{StaticResource UnselectedButtonLabelStyle}">
+                        </Label>
+                    </StackPanel>
+                </Button>
+            </Border>
+
+            <!-- Deposit Button -->
+            <Border  
+                      x:Name ="bdrDepositButton"
+                      Style="{StaticResource UnselectedBorderButtonStyle}" >
+                <Button 
+                         x:Name="btnDeposit" 
+                         Style="{StaticResource UnselectedButtonStyle}">
+                    <StackPanel 
+                             x:Name="spDepositButton"
+                             Orientation="Horizontal" 
+                             Margin="2">
+                        <svg1:SvgViewbox 
+                                x:Name ="svgDepositButtonIcon"
+                                Source="\Resources\Pictures\Dashboard\SidaBar\iconOfDepositButton.svg"
+                                Opacity="0.5"
+                                Margin="0,0,32,0"></svg1:SvgViewbox>
+                        <Label 
+                                 x:Name="lblDepositButton"
+                                 Content="Deposit" 
+                                 Style="{StaticResource UnselectedButtonLabelStyle}">
+                        </Label>
+                    </StackPanel>
+                </Button>
+            </Border>
+
+            <!-- History Button -->
+            <Border  
+                  x:Name ="bdrHistoryButton"
+                  Style="{StaticResource UnselectedBorderButtonStyle}" >
+                <Button 
+                         x:Name="btnHistory" 
+                         Style="{StaticResource UnselectedButtonStyle}">
+                    <StackPanel 
+                             x:Name="spHistoryButton"
+                             Orientation="Horizontal" 
+                             Margin="2">
+                        <svg1:SvgViewbox 
+                                 Source="\Resources\Pictures\Dashboard\SidaBar\iconOfHistoryButton.svg"
+                                 Opacity="0.5"
+                                 Margin="0,0,32,0">
+                        </svg1:SvgViewbox>
+                        <Label 
+                                 x:Name="lblHistoryButton"
+                                 Content="History" 
+                                 Style="{StaticResource UnselectedButtonLabelStyle}">
+                        </Label>
+                    </StackPanel>
+                </Button>
+            </Border>
+
+
+            <!-- Settings Button -->
+            <Border  
+                     x:Name ="bdrSettingsButton"
+                     Style="{StaticResource UnselectedBorderButtonStyle}" 
+                     VerticalAlignment="Bottom">
+                <Button 
+                        x:Name="btnSettings" 
+                        Style="{StaticResource UnselectedButtonStyle}">
+                    <StackPanel 
+                            x:Name="spSettingsButton"
+                            Orientation="Horizontal" 
+                            Margin="2">
+                        <svg1:SvgViewbox 
+                                x:Name ="svgSettingsButtonIcon"
+                                Source="\Resources\Pictures\Dashboard\SidaBar\icnOfTransferButton.svg"
+                                Opacity="0.5"
+                                Margin="0,0,32,0"></svg1:SvgViewbox>
+                        <Label 
+                                x:Name="lblSettingsButton"
+                                Content="Settings" 
+                                Style="{StaticResource UnselectedButtonLabelStyle}">
+                        </Label>
+                    </StackPanel>
+                </Button>
+            </Border>
+
+
+        </StackPanel>
+        <!-- endregion  -->
+
+        <!-- region Header -->
+        <Border 
+            x:Name="bdrHeader"
+            Background= "White" 
+            Padding="30,30,30,30"
+            DockPanel.Dock="Top"
+            BorderThickness="0">
+            <StackPanel 
+                Orientation="Horizontal" 
+                FlowDirection="RightToLeft" 
+                Width="Auto" 
+                Height="Auto" >
+                <svg1:SvgViewbox
+                    x:Name="svgDropDownArrow"
+                    Width="34.77"
+                    Height="34.77"
+                    Margin="0,0,15,0"
+                    Source="\Resources\Pictures\Dashboard\Header\icon.svg">
+                </svg1:SvgViewbox>
+                <Label 
+                    x:Name="lblUserName"
+                    Content="Liam Filo" 
+                    Height="Auto"
+                    FontFamily="{StaticResource LoraFont}"
+                    Width="Auto"
+                    FontSize="24"
+                    FontWeight="SemiBold" 
+                    VerticalContentAlignment="Center"
+                    Margin="0,0,15,0">
+                </Label>
+                <svg1:SvgViewbox
+                    x:Name="svgProfilePicture"
+                    Source="\Resources\Pictures\Dashboard\Header\Profile Picture.svg"
+                    Stretch="None"
+                    Margin="0,0,15,0">
+                </svg1:SvgViewbox>
+                <svg1:SvgViewbox
+                    x:Name="svgNotificationIcon"
+                    Source="\Resources\Pictures\Dashboard\Header\Ring Button.svg"
+                    Stretch="None"
+                    Margin="0,10">
+                </svg1:SvgViewbox>
+            </StackPanel>
+        </Border>
+        <!-- endregion  -->
+
+        <!-- region Titles -->
+        <Border
+            x:Name="bdrTitles"
+            Background="{StaticResource BackgroundGrayColorBrush}"
+            DockPanel.Dock="Top"
+            BorderThickness="0">
+            <StackPanel 
+                x:Name="spText"
+                Orientation="Vertical"
+                Background="{StaticResource BackgroundGrayColorBrush}"
+                Margin="40,15,40,7.5">
+                <Label  
+                    x:Name="lblDashboardMainTitle" 
+                    Content="Dashboard" 
+                    Style="{StaticResource MainTitleStyle}" 
+                    Margin="0,0,0,-20">
+                </Label>
+
+                <Label  
+                    x:Name="lblDashboardSecondaryTitle" 
+                    Content="Welcome back, Liam" 
+                    Style="{StaticResource  SecondaryTitleStyle}">
+                </Label>
+            </StackPanel>
+        </Border>
+        <!-- endregion  -->
+
+        <!-- region Statistic Components -->
+        <Border
+            Background="{StaticResource BackgroundGrayColorBrush}"
+            DockPanel.Dock="Top"
+            BorderThickness="0">
+            <StackPanel
+                x:Name="spStatisticComponent"
+                Margin="28,15,52,8"
+                Orientation="Horizontal"
+                Background="{StaticResource BackgroundGrayColorBrush}">
+
+                <!-- Total Amount Component -->
+                <Border  
+                    x:Name="bdrTotalAmountComponent"
+                    Style="{StaticResource ComponentBorderStyle}">
+                    <StackPanel
+                        x:Name="spTotalAmount"
+                        Orientation="Vertical"
+                        VerticalAlignment="Center" 
+                        HorizontalAlignment="Center">
+                        <!-- Icon -->
+                        <svg1:SvgViewbox
+                            Source="\Resources\Pictures\Dashboard\Components\icnTotalAmount.svg"
+                            Stretch="None" 
+                            HorizontalAlignment="Left">
+                        </svg1:SvgViewbox>
+
+                        <!-- Amount -->
+                        <TextBlock 
+                            x:Name="txtblkTotalAmount"
+                            Text="$21,345" 
+                            Style="{StaticResource AmountComponentTextStyle}"/>
+
+                        <!-- Description -->
+                        <TextBlock 
+                            x:Name="txtblkTotalAmountDescription"
+                            Text="Total Amount" 
+                            Style="{StaticResource DescriptionComponentTextStyle}"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- Amount Deposit Component -->
+                <Border   
+                    x:Name="bdrAmountDepositComponent"
+                    Style="{StaticResource ComponentBorderStyle}">
+                    <StackPanel 
+                        x:Name="spAmountDeposit"
+                        VerticalAlignment="Center" 
+                        HorizontalAlignment="Left">
+                        <!-- Icon -->
+                        <svg1:SvgViewbox
+                        Source="\Resources\Pictures\Dashboard\Components\icnAmountDeposit.svg"
+                        Stretch="None"
+                        HorizontalAlignment="Left">
+                        </svg1:SvgViewbox>
+                        <!-- Amount -->
+                        <TextBlock 
+                            x:Name="txtblkAmountDeposit"
+                            Text="$21,345" 
+                            Style="{StaticResource AmountComponentTextStyle}"/>
+
+                        <!-- Description -->
+                        <TextBlock 
+                            x:Name="txtblkAmountDepositDescription"
+                            Text="Amount Deposit" 
+                            Style="{StaticResource DescriptionComponentTextStyle}"/>
+                    </StackPanel>
+                </Border>
+                <Border   
+                    x:Name="bdrAmountSpentComponent"
+                    Style="{StaticResource ComponentBorderStyle}">
+                    <StackPanel 
+                        x:Name="spAmountSpent"
+                        VerticalAlignment="Center" 
+                        HorizontalAlignment="Left">
+                        <!-- Icon -->
+                        <svg1:SvgViewbox
+                            Source="\Resources\Pictures\Dashboard\Components\icnAmountSpent.svg"
+                            Stretch="None"
+                            HorizontalAlignment="Left"/>
+                        <!-- Amount -->
+                        <TextBlock 
+                            x:Name="txtblkAmountSpent"
+                            Text="$21,345" 
+                            Style="{StaticResource AmountComponentTextStyle}"/>
+                        <!-- Description -->
+                        <TextBlock 
+                            x:Name="txtblkAmountSpentDescription"
+                            Text="Amount Spent" 
+                            Style="{StaticResource DescriptionComponentTextStyle}"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- Amount Spent Component -->
+
+                <!-- Incoming Amount Component -->
+                <Border   
+                    x:Name="bdrIncomingAmountComponent"
+                    Style="{StaticResource ComponentBorderStyle}">
+                    <StackPanel 
+                        x:Name="spIncomingAmount"
+                        VerticalAlignment="Center" 
+                        HorizontalAlignment="Left">
+                        <!-- Icon -->
+                        <svg1:SvgViewbox
+                            Source="\Resources\Pictures\Dashboard\Components\icnIncomingAmount.svg"
+                            Stretch="None"
+                            HorizontalAlignment="Left">
+                        </svg1:SvgViewbox>
+                        <!-- Amount -->
+                        <TextBlock 
+                            x:Name="txtblkIncomingAmount"
+                            Text="$21,345" 
+                            Style="{StaticResource AmountComponentTextStyle}"/>
+                        <!-- Description -->
+                        <TextBlock 
+                            x:Name="txtblkIncomingAmountDescription"
+                            Text="Incoming Amount" 
+                            Style="{StaticResource DescriptionComponentTextStyle}"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+        <!-- endregion  -->
+
+        <!-- region Data Components -->
+        <Border
+            Background="{StaticResource BackgroundGrayColorBrush}"
+            DockPanel.Dock="Bottom"
+            Padding="40,15,40,30"
+            >
+            <DockPanel
+                x:Name="dpData"
+                LastChildFill ="True"
+                VerticalAlignment="Top"
+                >
+
+                <!-- region Transaction List Components -->
+                <Border        
+                    x:Name="bdrTransactionComponent"
+                    DockPanel.Dock="Left"
+                    CornerRadius ="35"
+                    Padding="15"
+                    Background="{StaticResource ComponentColorBrushColor}"
+                    Margin="0,0,30,0">
+
+                    <Grid
+                        x:Name="grTransactionsData">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height ="auto"></RowDefinition>
+                            <RowDefinition Height ="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <!-- Titles -->
+                        <DockPanel
+                            x:Name="dpTitles"
+                            Grid.Row="0">
+                            <Label
+                                x:Name="lblLastTransaction"
+                                Content="Last Transactions"
+                                FontFamily="{StaticResource LoraFont}"
+                                FontSize="24.15"
+                                FontWeight="Bold"
+                                DockPanel.Dock="Left"
+                                Margin="0,0,150,0">
+                            </Label>
+
+                            <Label
+                                x:Name="lblCurrentBalance"
+                                Content="Current Balance: 3212$"
+                                FontFamily="{StaticResource LoraFont}"
+                                FontSize="30.19"
+                                FontWeight="Bold"
+                                Foreground="{StaticResource SuccessBrushColor}"
+                                DockPanel.Dock="Right"
+                                HorizontalAlignment="Right">
+                            </Label>
+                        </DockPanel>
+
+                        <!-- Datagrid of Last Transaction List -->
+                        <DataGrid 
+                            x:Name="dgrLastTransactions"
+                            RowStyle="{DynamicResource DataGridRowStyle1}" 
+                            ColumnHeaderStyle="{DynamicResource  DataGridColumnHeaderStyle1}" 
+                            CellStyle="{DynamicResource DataGridCellStyle1}"  
+                            Style="{DynamicResource DataGridStyle1}"
+                            VerticalScrollBarVisibility="Visible"
+                            HorizontalScrollBarVisibility="Auto"
+                            ScrollViewer.CanContentScroll="True"
+                            ScrollViewer.VerticalScrollBarVisibility="Visible"
+                            Grid.Row="1">
+                            <DataGrid.Columns>
+
+                                <DataGridTextColumn 
+                                        Header="Type" 
+                                        IsReadOnly="True" 
+                                        CanUserResize="False" 
+                                        Width="auto"
+                                        Binding="{Binding Type}"/>
+
+                                <DataGridTextColumn
+                                        Header="Amount" 
+                                        IsReadOnly="True" 
+                                        CanUserResize="False" 
+                                        Width="auto"
+                                        Binding="{Binding Amount}">
+
+                                </DataGridTextColumn>
+                                <DataGridTextColumn  
+                                        Header="Name" 
+                                         IsReadOnly="True" 
+                                         CanUserResize="False" 
+                                         Width="auto"
+                                        Binding="{Binding Name}"/>
+
+                                <DataGridTextColumn  
+                                        Header="Id" 
+                                         IsReadOnly="True" 
+                                         CanUserResize="False" 
+                                         Width="auto"
+                                        Binding="{Binding ID}"/>
+
+                                <DataGridTextColumn  
+                                        Header="Status" 
+                                         IsReadOnly="True" 
+                                         CanUserResize="False" 
+                                         Width="auto"
+                                        Binding="{Binding Status}"/>
+
+                                <DataGridTextColumn  
+                                        Header="Date" 
+                                         IsReadOnly="True" 
+                                         CanUserResize="False" 
+                                         Width="auto"
+                                        Binding="{Binding Date}"/>
+
+                                <DataGridTextColumn  
+                                        Header="Hour" 
+                                         IsReadOnly="True" 
+                                         CanUserResize="False" 
+                                         Width="auto"
+                                        Binding="{Binding Hour}"/>
+
+                                <DataGridTextColumn  
+                                        Header="Commission" 
+                                         IsReadOnly="True" 
+                                         CanUserResize="False" 
+                                         Width="auto"
+                                    Binding="{Binding Commission}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                    </Grid>
+                </Border>
+                <!-- endregion  -->
+
+                <!-- region Graph Component -->
+                <Border        
+                     x:Name="bdrGraph"
+                     DockPanel.Dock="Right"
+                     CornerRadius ="35"
+                     Padding="15"
+                     Background="{StaticResource ComponentColorBrushColor}">
+
+                    <!-- grid for graph  -->
+                    <Grid
+                        x:Name="grpGraph">
+                        <Grid.RowDefinitions>
+                            <!-- Header Row -->
+                            <RowDefinition Height="Auto" />
+
+                            <!-- Months Rows -->
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+
+                            <!-- Percents text Row -->
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <!-- Month Rows -->
+                            <ColumnDefinition Width="Auto" />
+
+                            <!-- Percents Rows -->
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+
+                        </Grid.ColumnDefinitions>
+
+                        <!-- region Graph Header -->
+                        <Border 
+                            x:Name="bdrGraphHeader"
+                            CornerRadius ="5"
+                            Padding="8"
+                            Background="White"
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="7"
+                            Margin="0,0,0,10">
+
+                            <!-- Buttons: -->
+                            <DockPanel
+                                x:Name="dpGraphHeader">
+
+                                <!-- Expnense and Income buttons -->
+                                <StackPanel
+                                    x:Name="spLeftHeaderGraphButtons"
+                                    Orientation="Horizontal"
+                                    DockPanel.Dock="Left">
+                                    <Border
+                                        x:Name="bdrExpenseButton"
+                                        Style="{StaticResource SelectedGraphButtonBorderStyle}">
+                                        <Button 
+                                            x:Name="btnExpense"
+                                            Content="Expense"
+                                            Style="{StaticResource SelectedGraphButtonStyle}">
+                                        </Button>
+                                    </Border>
+
+
+                                    <!-- Date Buttons -->
+                                    <Border
+                                      x:Name="bdrIncomeButton"
+                                      Style="{StaticResource UnselectedGraphButtonBorderStyle}">
+                                        <Button 
+                                          x:Name="btnIncome"
+                                          Content="Income"
+                                          Style="{StaticResource UnselectedGraphButtonStyle}">
+                                        </Button>
+                                    </Border>
+                                </StackPanel>
+
+                                <!-- Dates buttons -->
+                                <StackPanel
+                                    x:Name="spRightHeaderGraphButtons"
+                                    Orientation="Horizontal"
+                                    DockPanel.Dock="Right"
+                                    HorizontalAlignment="Right">
+
+                                    <Border
+                                        x:Name="bdrDButton"
+                                        Style="{StaticResource UnselectedGraphButtonBorderStyle}">
+                                        <Button 
+                                            x:Name="btnD"
+                                            Content="D"
+                                            Style="{StaticResource UnselectedGraphButtonStyle}">
+                                        </Button>
+                                    </Border>
+
+                                    <Border
+                                        x:Name="bdrWButton"
+                                        Style="{StaticResource UnselectedGraphButtonBorderStyle}">
+                                        <Button 
+                                            x:Name="btnW"
+                                            Content="W"
+                                            Style="{StaticResource UnselectedGraphButtonStyle}">
+                                        </Button>
+                                    </Border>
+
+                                    <Border
+                                        x:Name="bdrMButton"
+                                        Style="{StaticResource SelectedGraphButtonBorderStyle}">
+                                        <Button 
+                                            x:Name="btnM"
+                                            Content="M"
+                                            Style="{StaticResource SelectedGraphButtonStyle}">
+                                        </Button>
+                                    </Border>
+
+                                    <Border
+                                        x:Name="bdrYButton"
+                                        Style="{StaticResource UnselectedGraphButtonBorderStyle}">
+                                        <Button 
+                                            x:Name="btnY"
+                                            Content="Y"
+                                            Style="{StaticResource UnselectedGraphButtonStyle}">
+                                        </Button>
+                                    </Border>
+                                </StackPanel>
+                            </DockPanel>
+
+                        </Border>
+                        <!-- endregion  -->
+
+                        <!-- region Month Text Section -->
+                        <Label
+                            x:Name="lblJan"
+                            Content="Jan"
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Style="{StaticResource MonthLabelGraphStyle}">
+                        </Label>
+
+                        <Label
+                            x:Name="lblFeb"
+                            Content="Feb"
+                            Grid.Row="2"
+                            Style="{StaticResource MonthLabelGraphStyle}">
+                        </Label>
+
+                        <Label
+                            x:Name="lblMar"
+                            Content="Mar"
+                            Grid.Row="3"
+                            Style="{StaticResource MonthLabelGraphStyle}">
+                        </Label>
+
+                        <Label
+                            x:Name="lblApr"
+                            Content="Apr"
+                            Grid.Row="4"
+                            Style="{StaticResource MonthLabelGraphStyle}">
+                        </Label>
+
+                        <Label
+                            x:Name="lblMay"
+                            Content="May"
+                            Grid.Row="5"
+                            Style="{StaticResource MonthLabelGraphStyle}">
+                        </Label>
+
+                        <Label
+                            x:Name="lblJun"
+                            Content="Feb"
+                            Grid.Row="6"
+                            Style="{StaticResource MonthLabelGraphStyle}">
+                        </Label>
+
+                        <Label
+                            x:Name="lblJul"
+                            Content="Jul"
+                            Grid.Row="7"
+                            Style="{StaticResource MonthLabelGraphStyle}">
+                        </Label>
+
+                        <Label
+                            x:Name="lblAug"
+                            Content="Aug"
+                            Grid.Row="8"
+                            Style="{StaticResource MonthLabelGraphStyle}">
+                        </Label>
+
+                        <Label
+                            x:Name="lblSep"
+                            Content="Sep"
+                            Grid.Row="9"
+                            Style="{StaticResource MonthLabelGraphStyle}">
+                        </Label>
+
+                        <Label
+                            x:Name="lblOct"
+                            Content="Oct"
+                            Grid.Row="10"
+                            Style="{StaticResource MonthLabelGraphStyle}">
+                        </Label>
+
+                        <Label
+                            x:Name="lblNov"
+                            Content="Nov"
+                            Grid.Row="11"
+                            Style="{StaticResource MonthLabelGraphStyle}">
+                        </Label>
+
+                        <Label
+                            x:Name="lblDec"
+                            Content="Dec"
+                            Grid.Row="12"
+                            Style="{StaticResource MonthLabelGraphStyle}">
+                        </Label>
+                        <!-- endregion -->
+
+                        <!-- region Progress Bars -->
+                        <Border
+                             x:Name="bdrPgbJan"
+                             Grid.Row="1"  
+                             Grid.Column="1"
+                             Grid.ColumnSpan="5"
+                             Style="{StaticResource ProgressBarGraphBorder}">
+                            <ProgressBar 
+                                 x:Name="pgbJan"
+                                 Style="{StaticResource ProgressBarGraph}">
+                            </ProgressBar>
+                        </Border>
+
+                        <Border
+                            x:Name="bdrPgbFeb"
+                             Grid.Row="2"  
+                             Grid.Column="1"
+                             Grid.ColumnSpan="5"
+                             Style="{StaticResource ProgressBarGraphBorder}">
+                            <ProgressBar 
+                                 x:Name="pgbFeb"
+                                 Style="{StaticResource ProgressBarGraph}">
+                            </ProgressBar>
+                        </Border>
+
+                        <Border
+                            x:Name="bdrPgbMar"
+                             Grid.Row="3"  
+                             Grid.Column="1"
+                             Grid.ColumnSpan="5"
+                             Style="{StaticResource ProgressBarGraphBorder}">
+                            <ProgressBar 
+                                 x:Name="pgbMar"
+                                 Style="{StaticResource ProgressBarGraph}">
+                            </ProgressBar>
+                        </Border>
+
+                        <Border
+                            x:Name="bdrPgbApr"
+                             Grid.Row="4"  
+                             Grid.Column="1"
+                             Grid.ColumnSpan="5"
+                             Style="{StaticResource ProgressBarGraphBorder}">
+                            <ProgressBar 
+                                 x:Name="pgbApr"
+                                 Style="{StaticResource ProgressBarGraph}">
+                            </ProgressBar>
+                        </Border>
+
+                        <Border
+                            x:Name= "bdrPgbMay"
+                             Grid.Row="5"  
+                             Grid.Column="1"
+                             Grid.ColumnSpan="5"
+                             Style="{StaticResource ProgressBarGraphBorder}">
+                            <ProgressBar 
+                                 x:Name="pgbMay"
+                                 Style="{StaticResource ProgressBarGraph}">
+                            </ProgressBar>
+                        </Border>
+
+                        <Border
+                            x:Name="bdrPgbJun"
+                             Grid.Row="6"  
+                             Grid.Column="1"
+                             Grid.ColumnSpan="5"
+                             Style="{StaticResource ProgressBarGraphBorder}">
+                            <ProgressBar 
+                                 x:Name="pgbJun"
+                                 Style="{StaticResource ProgressBarGraph}">
+                            </ProgressBar>
+                        </Border>
+
+                        <Border
+                            x:Name="bdrPgbJul"
+                             Grid.Row="7"  
+                             Grid.Column="1"
+                             Grid.ColumnSpan="5"
+                             Style="{StaticResource ProgressBarGraphBorder}">
+                            <ProgressBar 
+                                 x:Name="pgbJul"
+                                 Style="{StaticResource ProgressBarGraph}">
+                            </ProgressBar>
+                        </Border>
+
+                        <Border
+                            x:Name="bdrPgbAug"
+                             Grid.Row="8"  
+                             Grid.Column="1"
+                             Grid.ColumnSpan="5"
+                             Style="{StaticResource ProgressBarGraphBorder}">
+                            <ProgressBar 
+                                 x:Name="pgbAug"
+                                 Style="{StaticResource ProgressBarGraph}">
+                            </ProgressBar>
+                        </Border>
+
+                        <Border
+                            x:Name="bdrPgbSep"
+                             Grid.Row="9"  
+                             Grid.Column="1"
+                             Grid.ColumnSpan="5"
+                             Style="{StaticResource ProgressBarGraphBorder}">
+                            <ProgressBar 
+                                 x:Name="pgbSep"
+                                 Style="{StaticResource ProgressBarGraph}">
+                            </ProgressBar>
+                        </Border>
+
+                        <Border
+                            x:Name="bdrPgbOct"
+                             Grid.Row="10"  
+                             Grid.Column="1"
+                             Grid.ColumnSpan="5"
+                             Style="{StaticResource ProgressBarGraphBorder}">
+                            <ProgressBar 
+                                 x:Name="pgbOct"
+                                 Style="{StaticResource ProgressBarGraph}">
+                            </ProgressBar>
+                        </Border>
+
+                        <Border
+                            x:Name="bdrPgbNov"
+                             Grid.Row="11"  
+                             Grid.Column="1"
+                             Grid.ColumnSpan="5"
+                             Style="{StaticResource ProgressBarGraphBorder}">
+                            <ProgressBar 
+                                 x:Name="pgbNov"
+                                 Style="{StaticResource ProgressBarGraph}">
+                            </ProgressBar>
+                        </Border>
+
+                        <Border
+                             x:Name="bdrPgbDec"
+                             Grid.Row="12"  
+                             Grid.Column="1"
+                             Grid.ColumnSpan="5"
+                             Style="{StaticResource ProgressBarGraphBorder}">
+                            <ProgressBar 
+                                 x:Name="pgbDec"
+                                 Style="{StaticResource ProgressBarGraph}">
+                            </ProgressBar>
+                        </Border>
+
+
+                        <!-- endregion -->
+
+                        <Label
+                            x:Name="lbl20Precents"
+                            Content="20%"
+                            Grid.Row="13"
+                            Grid.Column="1"
+                            HorizontalAlignment="Center"
+                            FontFamily="{StaticResource LoraFont}"
+                            FontWeight="SemiBold">
+                        </Label>
+
+                        <Label
+                            x:Name="lbl40Precents"
+                            Content="40%"
+                            Grid.Row="13"
+                            Grid.Column="2"
+                            HorizontalAlignment="Center"
+                            FontFamily="{StaticResource LoraFont}"
+                            FontWeight="SemiBold">
+                        </Label>
+
+                        <Label
+                            x:Name="lbl60Precents"
+                            Content="60%"
+                            Grid.Row="13"
+                            Grid.Column="3"
+                            HorizontalAlignment="Center"
+                            FontFamily="{StaticResource LoraFont}"
+                            FontWeight="SemiBold">
+                        </Label>
+
+                        <Label
+                            x:Name="lbl80Precents"
+                            Content="80%"
+                            Grid.Row="13"
+                            Grid.Column="4"
+                            HorizontalAlignment="Center"
+                            FontFamily="{StaticResource LoraFont}"
+                            FontWeight="SemiBold">
+                        </Label>
+
+                        <Label
+                            x:Name="lbl100Precents"
+                            Content="100%"
+                            Grid.Row="13"
+                            Grid.Column="5"
+                            Grid.ColumnSpan="2"
+                            HorizontalAlignment="Center"
+                            FontFamily="{StaticResource LoraFont}"
+                            FontWeight="SemiBold">
+                        </Label>
+
+                        <Line 
+                          Stroke="Black" 
+                          StrokeThickness="2" 
+                          StrokeDashArray="6 3" 
+                            Grid.Column="5"
+                            HorizontalAlignment="Right"
+                            Grid.Row="1"
+                            Grid.RowSpan="12"
+                             X1="0" Y1="0" X2="0" Y2="500"/>
+
+                        <Line 
+  Stroke="Black" 
+  StrokeThickness="2" 
+  StrokeDashArray="6 3" 
+    Grid.Column="4"
+    HorizontalAlignment="Center"
+    Grid.Row="1"
+    Grid.RowSpan="12"
+     X1="0" Y1="0" X2="0" Y2="500"/>
+
+
+                        <Line 
+  Stroke="Black" 
+  StrokeThickness="2" 
+  StrokeDashArray="6 3" 
+    Grid.Column="3"
+    HorizontalAlignment="Center"
+    Grid.Row="1"
+    Grid.RowSpan="12"
+     X1="0" Y1="0" X2="0" Y2="500"/>
+
+
+                        <Line 
+  Stroke="Black" 
+  StrokeThickness="2" 
+  StrokeDashArray="6 3" 
+    Grid.Column="2"
+    HorizontalAlignment="Center"
+    Grid.Row="1"
+    Grid.RowSpan="12"
+     X1="0" Y1="0" X2="0" Y2="500"/>
+
+
+                        <Line 
+                          Stroke="Black" 
+                          StrokeThickness="2" 
+                          StrokeDashArray="6 3" 
+                            Grid.Column="1"
+                            HorizontalAlignment="Center"
+                            Grid.Row="1"
+                            Grid.RowSpan="12"
+                             X1="0" Y1="0" X2="0" Y2="500"/>
+
+
+
+                    </Grid>
+                </Border>
+                <!-- endregion  -->
+
+            </DockPanel>
+        </Border>
+        <!-- endregion -->
+
+    </DockPanel>
+</Window>

@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using BankingEntities;
 
 namespace BankingCommunication
 {
@@ -18,6 +20,14 @@ namespace BankingCommunication
         {
             Command = command;
             UserId = userId; 
+        }
+
+        public void IsValidPacket()
+        {
+            if (Command is IValidatableCommand) (Command as IValidatableCommand).IsValidCommand();
+            
+            BankingEntities.UserValidator.IsValidIsraeliID(UserId);
+            
         }
     }
 }

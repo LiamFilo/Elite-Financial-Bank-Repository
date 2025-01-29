@@ -1,0 +1,598 @@
+﻿<Application x:Class="Client.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Client"
+             StartupUri="Windows\LogInWindow.xaml">
+    <Application.Resources>
+        <!--  #region General -->
+        <!-- #region Colors -->
+        <Color x:Key="PrimaryColor">#00111B</Color>
+        <Color x:Key="BlackGray">#A0A0A0</Color>
+        <Color x:Key="Text Box Color">#D9DFE2</Color>
+        <Color x:Key="White Gray">#D9D9D9</Color>
+        <Color x:Key="Dark cyan">#629189</Color>
+        <Color x:Key=" ">#FEFAE0</Color>
+        <Color x:Key="Earth yellow">#DDA15E</Color>
+        <Color x:Key="Tiger's Eye">#BC6C25</Color>
+        <Color x:Key="Background Gray">#FAFAFB</Color>
+        <Color x:Key="Success Color">#2E7D32</Color>
+        <Color x:Key="Fail Color">#D32F2F</Color>
+        <Color x:Key="Component Color">#F4F4F4</Color>
+        <Color x:Key="White Blue Color">#1E3A5F</Color>
+
+        <!--  #endregion -->
+
+        <!-- #region Brushes -->
+        <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource PrimaryColor}"></SolidColorBrush>
+        <SolidColorBrush x:Key="BlackGrayBrush" Color="{StaticResource BlackGray}"></SolidColorBrush>
+        <SolidColorBrush x:Key="TextBoxColorBrush" Color="{StaticResource Text Box Color}"></SolidColorBrush>
+        <SolidColorBrush x:Key="WhiteGrayColorBrush" Color="{StaticResource White Gray}"></SolidColorBrush>
+        <SolidColorBrush x:Key="DarkCyanColorBrush" Color="{StaticResource Dark cyan}"></SolidColorBrush>
+        <SolidColorBrush x:Key="BackgroundGrayColorBrush" Color="{StaticResource Background Gray}"></SolidColorBrush>
+        <SolidColorBrush x:Key="ComponentColorBrushColor" Color="{StaticResource Component Color }"></SolidColorBrush>
+        <SolidColorBrush x:Key="SuccessBrushColor" Color="{StaticResource Success Color }"></SolidColorBrush>
+        <SolidColorBrush x:Key="FailBrushColor" Color="{StaticResource Fail Color }"></SolidColorBrush>
+        <SolidColorBrush x:Key="WhiteBlueBrushColor" Color="{StaticResource White Blue Color}"></SolidColorBrush>
+
+        <!--  #endregion -->
+
+        <!-- #region Fonts -->
+        <FontFamily x:Key="LoraFont">Resources\Fonts\Lora.ttf #Lora</FontFamily>
+        <!--  #endregion -->
+
+        <!--  #region Titles Styles -->
+        <!-- General: Main title style -->
+        <Style x:Key="MainTitleStyle" TargetType="Label">
+            <Setter Property="FontFamily" Value="{StaticResource LoraFont}" />
+            <Setter Property="FontSize" Value="45" />
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+
+        <!-- General: Secondary title style -->
+        <Style x:Key="SecondaryTitleStyle" TargetType="Label">
+            <Setter Property="FontFamily" Value="{StaticResource LoraFont}" />
+            <Setter Property="FontSize" Value="22.5" />
+            <Setter Property="FontWeight" Value="Regular" />
+        </Style>
+
+        <!-- General: Description UI ComponentText style -->
+        <Style x:Key="DescriptionUIComponentText" TargetType="Label">
+            <Setter Property="FontFamily" Value="{StaticResource LoraFont}" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="FontWeight" Value="Medium"/>
+        </Style>
+        <!--  #endregion -->
+
+        <!--  #region TextBox Styles -->
+        <!-- Text box border style -->
+        <Style x:Key="TextBoxBorderStyle" TargetType="Border">
+            <Setter Property="BorderBrush" Value="{StaticResource TextBoxColorBrush}" />
+            <Setter Property="BorderThickness" Value="4" />
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="Background" Value="{StaticResource TextBoxColorBrush}"/>
+        </Style>
+
+        <!-- Text box style -->
+        <Style x:Key="TextBoxStyle" TargetType="TextBox">
+            <Setter Property="Width" Value="402.5"/>
+            <Setter Property="Height" Value="52"/>
+            <Setter Property="Background" Value="{StaticResource TextBoxColorBrush}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Padding" Value="5,0"/>
+            <Setter Property="FontFamily" Value="{StaticResource LoraFont}"/>
+            <Setter Property="TextAlignment" Value="Left"/>
+        </Style>
+        <!--  #endregion -->
+
+        <!--  #region Buttons -->
+        <Style x:Key="GeneralBorderForButtonStyle" TargetType="Border">
+            <Setter Property="BorderThickness" Value="4"/>
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="Padding" Value="0"/>
+        </Style>
+        <Style x:Key="GeneralButtonStyle" TargetType="Button">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="157,13"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="{StaticResource LoraFont}"/>
+        </Style>
+        <!--  #endregion -->
+        <!--  #endregion -->
+
+        <!-- region Log In -->
+
+
+
+
+
+        <!-- endregion -->
+
+        <!--#region DataGrid Style-->
+        <Style x:Key="{ComponentResourceKey ResourceId=DataGridSelectAllButtonStyle, TypeInTargetAssembly={x:Type DataGrid}}" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <Rectangle x:Name="Border" Fill="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" SnapsToDevicePixels="True"/>
+                            <Polygon x:Name="Arrow" Fill="Black" HorizontalAlignment="Right" Margin="8,8,3,3" Opacity="0.15" Points="0,10 10,10 10,0" Stretch="Uniform" VerticalAlignment="Bottom"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Stroke" TargetName="Border" Value="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Fill" TargetName="Border" Value="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Visibility" TargetName="Arrow" Value="Collapsed"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="DataGridStyle1" TargetType="{x:Type DataGrid}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#222528"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="RowDetailsVisibilityMode" Value="VisibleWhenSelected"/>
+            <Setter Property="ScrollViewer.CanContentScroll" Value="true"/>
+            <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
+            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+            <Setter Property="AutoGenerateColumns" Value="False" />
+            <Setter Property="HeadersVisibility" Value="Column" />
+            <Setter Property="Margin" Value="0 10 0 0" />
+            <Setter Property="Grid.Row" Value="5" />
+            <Setter Property="SelectionMode" Value="Single" />
+            <Setter Property="SelectionUnit" Value="FullRow" />
+            <Setter Property="CanUserAddRows" Value="False" />
+            <Setter Property="CanUserDeleteRows" Value="False" />
+            <Setter Property="CanUserReorderColumns" Value="False" />
+            <Setter Property="CanUserResizeRows" Value="False" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="GridLinesVisibility" Value="None" />
+            <Setter Property="ColumnWidth" Value="*" />
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type DataGrid}">
+                        <Border Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="True">
+                            <ScrollViewer x:Name="DG_ScrollViewer" Focusable="false">
+                                <ScrollViewer.Template>
+                                    <ControlTemplate TargetType="{x:Type ScrollViewer}">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Button Command="{x:Static DataGrid.SelectAllCommand}" Focusable="false" Style="{DynamicResource {ComponentResourceKey ResourceId=DataGridSelectAllButtonStyle, TypeInTargetAssembly={x:Type DataGrid}}}" Visibility="{Binding HeadersVisibility, Converter={x:Static DataGrid.HeadersVisibilityConverter}, ConverterParameter={x:Static DataGridHeadersVisibility.All}, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" Width="{Binding CellsPanelHorizontalOffset, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
+                                            <DataGridColumnHeadersPresenter x:Name="PART_ColumnHeadersPresenter" Grid.Column="1" Visibility="{Binding HeadersVisibility, Converter={x:Static DataGrid.HeadersVisibilityConverter}, ConverterParameter={x:Static DataGridHeadersVisibility.Column}, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
+                                            <ScrollContentPresenter x:Name="PART_ScrollContentPresenter" Grid.ColumnSpan="2" CanContentScroll="{TemplateBinding CanContentScroll}" Grid.Row="1"/>
+                                            <ScrollBar x:Name="PART_VerticalScrollBar" Grid.Column="2" Maximum="{TemplateBinding ScrollableHeight}" Orientation="Vertical" Grid.Row="1" ViewportSize="{TemplateBinding ViewportHeight}" Value="{Binding VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"/>
+                                            <Grid Grid.Column="1" Grid.Row="2">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="{Binding NonFrozenColumnsViewportHorizontalOffset, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <ScrollBar x:Name="PART_HorizontalScrollBar" Grid.Column="1" Maximum="{TemplateBinding ScrollableWidth}" Orientation="Horizontal" ViewportSize="{TemplateBinding ViewportWidth}" Value="{Binding HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}"/>
+                                            </Grid>
+                                        </Grid>
+                                    </ControlTemplate>
+                                </ScrollViewer.Template>
+                                <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                            </ScrollViewer>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsGrouping" Value="true"/>
+                        <Condition Property="VirtualizingPanel.IsVirtualizingWhenGrouping" Value="false"/>
+                    </MultiTrigger.Conditions>
+                    <Setter Property="ScrollViewer.CanContentScroll" Value="false"/>
+                </MultiTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="DataGridRowStyle1" TargetType="{x:Type DataGridRow}">
+            <Setter Property="Margin" Value="0 4 0 0" />
+            <Setter Property="Background" Value="#FFFFFF"/>
+            <Setter Property="SnapsToDevicePixels" Value="true"/>
+            <Setter Property="Validation.ErrorTemplate" Value="{x:Null}"/>
+            <Setter Property="ValidationErrorTemplate">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <TextBlock Foreground="Red" Margin="2,0,0,0" Text="!" VerticalAlignment="Center"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type DataGridRow}">
+                        <Border x:Name="DGR_Border" Padding="0 8" CornerRadius="5" Background="{TemplateBinding Background}" BorderThickness="0" SnapsToDevicePixels="True">
+                            <SelectiveScrollingGrid>
+                                <SelectiveScrollingGrid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </SelectiveScrollingGrid.ColumnDefinitions>
+                                <SelectiveScrollingGrid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="Auto"/>
+                                </SelectiveScrollingGrid.RowDefinitions>
+                                <DataGridCellsPresenter Grid.Column="1" ItemsPanel="{TemplateBinding ItemsPanel}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                <DataGridDetailsPresenter Grid.Column="1" Grid.Row="1" SelectiveScrollingGrid.SelectiveScrollingOrientation="{Binding AreRowDetailsFrozen, Converter={x:Static DataGrid.RowDetailsScrollingConverter}, ConverterParameter={x:Static SelectiveScrollingOrientation.Vertical}, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" Visibility="{TemplateBinding DetailsVisibility}"/>
+                                <DataGridRowHeader Grid.RowSpan="2" SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical" Visibility="{Binding HeadersVisibility, Converter={x:Static DataGrid.HeadersVisibilityConverter}, ConverterParameter={x:Static DataGridHeadersVisibility.Row}, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
+                            </SelectiveScrollingGrid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#623ED0"/>
+                    <Setter Property="Foreground" Value="#ffffff"/>
+                </Trigger>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="#623ED0"/>
+                    <Setter Property="Foreground" Value="#ffffff"/>
+                </Trigger>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsSelected" Value="true"/>
+                        <Condition Property="Selector.IsSelectionActive" Value="false"/>
+                    </MultiTrigger.Conditions>
+                    <Setter Property="Background" Value="#dfdfdf"/>
+                </MultiTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="DataGridCellStyle1" TargetType="{x:Type DataGridCell}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+            <Setter Property="Margin" Value="15 0" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type DataGridCell}">
+                        <Border Background="{TemplateBinding Background}" BorderThickness="0" SnapsToDevicePixels="True">
+                            <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ColumnHeaderGripperStyle" TargetType="{x:Type Thumb}">
+            <Setter Property="Width" Value="8"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Cursor" Value="SizeWE"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Thumb}">
+                        <Border Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="DataGridColumnHeaderStyle1" TargetType="{x:Type DataGridColumnHeader}">
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="#69717D" />
+            <Setter Property="Margin" Value="15 0 15 10" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
+                        <Grid>
+                            <Border Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
+                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </Border>
+                            <Thumb x:Name="PART_LeftHeaderGripper" HorizontalAlignment="Left" Style="{StaticResource ColumnHeaderGripperStyle}"/>
+                            <Thumb x:Name="PART_RightHeaderGripper" HorizontalAlignment="Right" Style="{StaticResource ColumnHeaderGripperStyle}"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!--#endregion-->
+
+        <!--#region Check Box Style-->
+        <SolidColorBrush x:Key="OptionMark.Static.Background" Color="#FFFFFFFF"/>
+        <SolidColorBrush x:Key="OptionMark.Static.Border" Color="#FF707070"/>
+        <SolidColorBrush x:Key="OptionMark.Static.Glyph" Color="#FF212121"/>
+        <SolidColorBrush x:Key="OptionMark.MouseOver.Background" Color="#FFF3F9FF"/>
+        <SolidColorBrush x:Key="OptionMark.MouseOver.Border" Color="#FF5593FF"/>
+        <SolidColorBrush x:Key="OptionMark.MouseOver.Glyph" Color="#FF212121"/>
+        <SolidColorBrush x:Key="OptionMark.Pressed.Background" Color="#FFD9ECFF"/>
+        <SolidColorBrush x:Key="OptionMark.Pressed.Border" Color="#FF3C77DD"/>
+        <SolidColorBrush x:Key="OptionMark.Pressed.Glyph" Color="#FF212121"/>
+        <SolidColorBrush x:Key="OptionMark.Disabled.Background" Color="#FFE6E6E6"/>
+        <SolidColorBrush x:Key="OptionMark.Disabled.Border" Color="#FFBCBCBC"/>
+        <SolidColorBrush x:Key="OptionMark.Disabled.Glyph" Color="#FF707070"/>
+
+        <Style x:Key="CheckBoxStyle" TargetType="{x:Type CheckBox}">
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="Background" Value="{StaticResource OptionMark.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="#DAE2EA"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type CheckBox}">
+                        <Grid x:Name="templateRoot" Background="Transparent" SnapsToDevicePixels="True">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Border x:Name="checkBoxBorder" CornerRadius="3" Padding="1" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="1" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                                <Grid x:Name="markGrid">
+                                    <Path x:Name="optionMark" Data="F1 M 9.97498,1.22334L 4.6983,9.09834L 4.52164,9.09834L 0,5.19331L 1.27664,3.52165L 4.255,6.08833L 8.33331,1.52588e-005L 9.97498,1.22334 Z " Fill="{StaticResource OptionMark.Static.Glyph}" Margin="1" Opacity="0" Stretch="None"/>
+                                    <Rectangle x:Name="indeterminateMark" Fill="{StaticResource OptionMark.Static.Glyph}" Margin="2" Opacity="0"/>
+                                </Grid>
+                            </Border>
+                            <ContentPresenter x:Name="contentPresenter" Grid.Column="1" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="HasContent" Value="true">
+                                <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                                <Setter Property="Padding" Value="4,-1,0,0"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="checkBoxBorder" Value="{StaticResource OptionMark.MouseOver.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="checkBoxBorder" Value="#9575CD"/>
+                                <Setter Property="Fill" TargetName="optionMark" Value="{StaticResource OptionMark.MouseOver.Glyph}"/>
+                                <Setter Property="Fill" TargetName="indeterminateMark" Value="{StaticResource OptionMark.MouseOver.Glyph}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="checkBoxBorder" Value="{StaticResource OptionMark.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="checkBoxBorder" Value="{StaticResource OptionMark.Disabled.Border}"/>
+                                <Setter Property="Fill" TargetName="optionMark" Value="{StaticResource OptionMark.Disabled.Glyph}"/>
+                                <Setter Property="Fill" TargetName="indeterminateMark" Value="{StaticResource OptionMark.Disabled.Glyph}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="checkBoxBorder" Value="{StaticResource OptionMark.Pressed.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="checkBoxBorder" Value="#9575CD"/>
+                                <Setter Property="Fill" TargetName="optionMark" Value="{StaticResource OptionMark.Pressed.Glyph}"/>
+                                <Setter Property="Fill" TargetName="indeterminateMark" Value="{StaticResource OptionMark.Pressed.Glyph}"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="true">
+                                <Setter Property="Opacity" TargetName="optionMark" Value="1"/>
+                                <Setter Property="Opacity" TargetName="indeterminateMark" Value="0"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="{x:Null}">
+                                <Setter Property="Opacity" TargetName="optionMark" Value="0"/>
+                                <Setter Property="Opacity" TargetName="indeterminateMark" Value="1"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!--#endregion-->
+
+        <!-- region Dashboard -->
+
+        <!-- region SideBar -->
+
+        <!-- SideBar: selected button border style -->
+        <Style x:Key="SelectedBorderButtonStyle" TargetType="Border">
+            <Setter Property="BorderBrush" Value="{StaticResource DarkCyanColorBrush}" />
+            <Setter Property="BorderThickness" Value="4" />
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="Margin" Value="0,0,0,22" />
+        </Style>
+
+        <!-- SideBar: button selected style -->
+        <Style x:Key="SelectedButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource DarkCyanColorBrush}" />
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="FontWeight" Value="Normal" />
+            <Setter Property="FontFamily" Value="{StaticResource LoraFont}" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="Padding" Value="2" />
+            <Setter Property="BorderThickness" Value="0" />
+        </Style>
+
+        <!-- SideBar: unselected button border style -->
+        <Style x:Key="UnselectedBorderButtonStyle" TargetType="Border">
+            <Setter Property="BorderThickness" Value="4" />
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="Margin" Value="0,0,0,22" />
+        </Style>
+
+        <!-- SideBar: unselected button  style -->
+        <Style x:Key="UnselectedButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource PrimaryBrush}" />
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="FontWeight" Value="Normal" />
+            <Setter Property="FontFamily" Value="{StaticResource LoraFont}" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="Padding" Value="2" />
+            <Setter Property="BorderThickness" Value="0" />
+        </Style>
+
+        <!-- SideBar: unselected button label style -->
+        <Style x:Key="UnselectedButtonLabelStyle" TargetType="Label">
+            <Setter Property="Opacity" Value="80" />
+            <Setter Property="Foreground">
+                <Setter.Value>
+                    <SolidColorBrush Color="White" Opacity="0.5" />
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!-- endregion  -->
+
+        <!-- region Components -->
+
+        <!-- Components: Component Border style -->
+        <Style x:Key="ComponentBorderStyle" TargetType="Border">
+            <Setter Property="CornerRadius" Value="35" />
+            <Setter Property="Background" Value="{StaticResource ComponentColorBrushColor}" />
+            <Setter Property="Padding" Value="65.5,80" />
+            <Setter Property="Margin" Value="0,0,30,0" />
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect 
+                          Color="#000000" 
+                          BlurRadius="4" 
+                          ShadowDepth="4" 
+                          Opacity="0.25" 
+                          Direction="270" />
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Components: Component Amount Label style -->
+        <Style x:Key="AmountComponentTextStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="32" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontFamily" Value="{StaticResource LoraFont}" />
+            <Setter Property="Foreground" Value="{StaticResource PrimaryBrush}" />
+        </Style>
+
+        <!-- Components: Component Description Label style -->
+        <Style x:Key="DescriptionComponentTextStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="FontWeight" Value="Medium" />
+            <Setter Property="FontFamily" Value="{StaticResource LoraFont}" />
+            <Setter Property="Foreground" Value="{StaticResource PrimaryBrush}" />
+        </Style>
+        <!-- endregion  -->
+
+        <!-- region Graph Component -->
+
+        <!-- selected button border style -->
+        <Style x:Key="SelectedGraphButtonBorderStyle" TargetType="Border">
+            <Setter Property="Background" Value="{StaticResource PrimaryBrush}" />
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Margin" Value="0,0,10,0"/>
+        </Style>
+
+        <!-- selected button style -->
+        <Style x:Key="SelectedGraphButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource PrimaryBrush}" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontFamily" Value="{StaticResource LoraFont}"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+
+        <!-- Unselected button border style -->
+        <Style x:Key="UnselectedGraphButtonBorderStyle" TargetType="Border">
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="Background" Value="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Margin" Value="0,0,10,0"/>
+        </Style>
+
+        <!-- Unselected button style -->
+
+        <Style x:Key="UnselectedGraphButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}"/>
+            <Setter Property="Foreground" Value="{StaticResource PrimaryBrush}" />
+            <Setter Property="FontFamily" Value="{StaticResource LoraFont}"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+
+        <!-- Month Label style -->
+        <Style x:Key="MonthLabelGraphStyle" TargetType="Label">
+            <Setter Property="FontFamily" Value="{StaticResource LoraFont}" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+
+        <!-- Progress Bar border style -->
+        <Style x:Key="ProgressBarGraphBorder" TargetType="Border">
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="Margin" Value="0,6" />
+            <Setter Property="Background" Value="{StaticResource BlackGrayBrush}" />
+        </Style>
+
+        <!-- Progress Bar style -->
+        <Style x:Key="ProgressBarGraph" TargetType="ProgressBar">
+            <Setter Property="Maximum" Value="100" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Height" Value="1" />
+            <Setter Property="Background" Value="{StaticResource BlackGrayBrush}" />
+        </Style>
+        <!-- endregion -->
+
+        <!-- endregion -->
+
+        <!-- region Transaction Execution Window -->
+        <Style x:Key="SelectedTransactionComponentButtonBorderStyle" TargetType="Border">
+            <Setter Property="CornerRadius" Value="35" />
+            <Setter Property="Background" Value="{StaticResource PrimaryBrush}" />
+            <Setter Property="Padding" Value="40.5,45" />
+            <Setter Property="Padding" Value="40.5,45" />
+            <Setter Property="Margin" Value="0,0,30,0" />
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect 
+          Color="#000000" 
+          BlurRadius="4" 
+          ShadowDepth="4" 
+          Opacity="0.25" 
+          Direction="270" />
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="SelectedTransactionComponentButtonLabelStyle" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="{StaticResource LoraFont}" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontWeight" Value="Medium" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="UnselectedTransactionComponentButtonBorderStyle" TargetType="Border">
+            <Setter Property="CornerRadius" Value="35" />
+            <Setter Property="Background" Value="{StaticResource ComponentColorBrushColor}" />
+            <Setter Property="Padding" Value="40.5,45" />
+            <Setter Property="Padding" Value="40.5,45" />
+            <Setter Property="Margin" Value="0,0,30,0" />
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect 
+                  Color="#000000" 
+                  BlurRadius="4" 
+                  ShadowDepth="4" 
+                  Opacity="0.25" 
+                  Direction="270" />
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="UnselectedTransactionComponentButtonLabelStyle" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="{StaticResource LoraFont}" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="FontWeight" Value="Medium" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+
+
+        <!-- endregion -->
+    </Application.Resources>
+</Application>

@@ -1,0 +1,76 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\Fonts\Lora.ttf" />
+    <None Remove="Resources\Pictures\Dashboard\Components\icnAmountDeposit.svg" />
+    <None Remove="Resources\Pictures\Dashboard\Components\icnAmountSpent.svg" />
+    <None Remove="Resources\Pictures\Dashboard\Components\icnIncomingAmount.svg" />
+    <None Remove="Resources\Pictures\Dashboard\Components\icnTotalAmount.svg" />
+    <None Remove="Resources\Pictures\Dashboard\Header\green circle.svg" />
+    <None Remove="Resources\Pictures\Dashboard\Header\icon.svg" />
+    <None Remove="Resources\Pictures\Dashboard\Header\Profile Picture.svg" />
+    <None Remove="Resources\Pictures\Dashboard\Header\Ring Button.svg" />
+    <None Remove="Resources\Pictures\Dashboard\Main Data Component\Component.svg" />
+    <None Remove="Resources\Pictures\Dashboard\Main Data Component\icnAmountDeposit.svg" />
+    <None Remove="Resources\Pictures\Dashboard\Main Data Component\icnAmountSpent.svg" />
+    <None Remove="Resources\Pictures\Dashboard\Main Data Component\icnIncomingAmount.svg" />
+    <None Remove="Resources\Pictures\Dashboard\Main Data Component\icnTotalAmount.svg" />
+    <None Remove="Resources\Pictures\Dashboard\SidaBar\icnOfDashboardButton.svg" />
+    <None Remove="Resources\Pictures\Dashboard\SidaBar\icnOfTransferButton.svg" />
+    <None Remove="Resources\Pictures\Dashboard\SidaBar\icnOfWithdrawButton.svg" />
+    <None Remove="Resources\Pictures\Dashboard\SidaBar\iconOfDepositButton.svg" />
+    <None Remove="Resources\Pictures\Dashboard\SidaBar\iconOfHistoryButton.svg" />
+    <None Remove="Resources\Pictures\Execution Transaction\Icons\icnSelectedDeposit.svg" />
+    <None Remove="Resources\Pictures\Execution Transaction\Icons\icnSelectedTransfer.svg" />
+    <None Remove="Resources\Pictures\Execution Transaction\Icons\icnSelectedWithdraw.svg" />
+    <None Remove="Resources\Pictures\Left Side Black.png" />
+    <None Remove="Resources\Pictures\Logo.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SharpVectors" Version="1.8.4.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BankingCommunication\BankingCommunication.csproj" />
+    <ProjectReference Include="..\BankingEntities\BankingEntities.csproj" />
+    <ProjectReference Include="..\BankingEnumeration\BankingEnumeration.csproj" />
+    <ProjectReference Include="..\BankingExceptions\BankingExceptions.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Fonts\Lora.ttf" />
+    <Resource Include="Resources\Pictures\Dashboard\Components\icnAmountDeposit.svg" />
+    <Resource Include="Resources\Pictures\Dashboard\Components\icnAmountSpent.svg" />
+    <Resource Include="Resources\Pictures\Dashboard\Components\icnIncomingAmount.svg" />
+    <Resource Include="Resources\Pictures\Dashboard\Components\icnTotalAmount.svg" />
+    <Resource Include="Resources\Pictures\Dashboard\Header\green circle.svg" />
+    <Resource Include="Resources\Pictures\Dashboard\Header\icon.svg" />
+    <Resource Include="Resources\Pictures\Dashboard\Header\Profile Picture.svg" />
+    <Resource Include="Resources\Pictures\Dashboard\Header\Ring Button.svg" />
+    <Resource Include="Resources\Pictures\Dashboard\Main Data Component\Component.svg" />
+    <Resource Include="Resources\Pictures\Dashboard\Main Data Component\icnAmountDeposit.svg" />
+    <Resource Include="Resources\Pictures\Dashboard\Main Data Component\icnAmountSpent.svg" />
+    <Resource Include="Resources\Pictures\Dashboard\Main Data Component\icnIncomingAmount.svg" />
+    <Resource Include="Resources\Pictures\Dashboard\Main Data Component\icnTotalAmount.svg" />
+    <Resource Include="Resources\Pictures\Dashboard\SidaBar\icnOfDashboardButton.svg" />
+    <Resource Include="Resources\Pictures\Dashboard\SidaBar\icnOfTransferButton.svg" />
+    <Resource Include="Resources\Pictures\Dashboard\SidaBar\icnOfWithdrawButton.svg" />
+    <Resource Include="Resources\Pictures\Dashboard\SidaBar\iconOfDepositButton.svg" />
+    <Resource Include="Resources\Pictures\Dashboard\SidaBar\iconOfHistoryButton.svg" />
+    <Resource Include="Resources\Pictures\Execution Transaction\Icons\icnSelectedDeposit.svg" />
+    <Resource Include="Resources\Pictures\Execution Transaction\Icons\icnSelectedTransfer.svg" />
+    <Resource Include="Resources\Pictures\Execution Transaction\Icons\icnSelectedWithdraw.svg" />
+    <Resource Include="Resources\Pictures\Left Side Black.png" />
+    <Resource Include="Resources\Pictures\Logo.svg" />
+  </ItemGroup>
+
+</Project>

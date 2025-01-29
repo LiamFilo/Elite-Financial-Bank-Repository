@@ -24,7 +24,7 @@ namespace BankingCommunication {
 		{
             this.CommandType = commandType;
 
-            if (!IsValidCommand()) throw new InvalidCommandException(commandType);
+            IsValidCommand();
 		}
         private static void InitializeNonArguemntList()
         {
@@ -41,9 +41,10 @@ namespace BankingCommunication {
             });
         }
 
-        public bool IsValidCommand()
+        public void IsValidCommand()
         {
-            return NonArgumentClientCommandList.Contains(this.CommandType);
+            if (NonArgumentClientCommandList.Contains(this.CommandType))
+                throw new Exception("The type command you give is not non-argument command");
             
         }
     }
