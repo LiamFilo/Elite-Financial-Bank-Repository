@@ -28,11 +28,19 @@ namespace Client_Side.Windows
         {
             InitializeComponent();
 
+
+            Console.WriteLine("initializing");
+            ClientViewModel.Instance.BCPManagerVM.ConnectToServerAndStartListening();
             this.btnLogin.Click += BtnLogin_Click;
+
         }
+
+
+
 
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
+            Console.WriteLine("btn Login Invoke");
             string userIDInput = this.txbIDNumber.Text,
                 userPhoneNumber = this.txbPhoneNumber.Text;
 
@@ -49,6 +57,6 @@ namespace Client_Side.Windows
             catch (Exception ex) { ExceptionHandler.ExceptionHandle(ex); }
         }
 
-        
+       
     }
 }

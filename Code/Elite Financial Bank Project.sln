@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "Server\Server.csproj", "{BF3FCFB6-7CAD-4837-8A09-A6126C64927D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DLL", "DLL", "{AA145820-4E36-4D85-AB8F-F1BC614C0C28}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,5 +50,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9F73BB2D-4A08-445B-BB31-8BECB93E195C} = {AA145820-4E36-4D85-AB8F-F1BC614C0C28}
+		{56EE3EAC-028B-4400-ABAA-C292A0D79136} = {AA145820-4E36-4D85-AB8F-F1BC614C0C28}
+		{E5FCBBBF-EAC0-4261-ABDA-59DEB50A533F} = {AA145820-4E36-4D85-AB8F-F1BC614C0C28}
+		{6D364946-BB29-4060-9DDA-E111AC562D49} = {AA145820-4E36-4D85-AB8F-F1BC614C0C28}
 	EndGlobalSection
 EndGlobal

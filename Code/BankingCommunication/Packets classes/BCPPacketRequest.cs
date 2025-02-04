@@ -5,9 +5,11 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using BankingEntities;
+using BankingEnumeration;
 
 namespace BankingCommunication
 {
+    [Serializable]
     /// <summary>
     /// Represent a data structure for packet to the server.
     /// </summary>
@@ -16,10 +18,18 @@ namespace BankingCommunication
         public readonly ICommand Command;
         public readonly string UserId;
 
+        public BCPPacketType Type { get; private set; }
+
         public BCPPacketRequest(ICommand command, string userId)
         {
             Command = command;
-            UserId = userId; 
+            UserId = userId;
+            Type = BCPPacketType.Request;
+        }
+
+        public BCPPacketRequest(ICommand command)
+        {
+            Command = command;
         }
 
         public void IsValidPacket()

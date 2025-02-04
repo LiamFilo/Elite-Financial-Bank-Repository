@@ -9,11 +9,11 @@ namespace Server
 	public enum RequestPriority 
 	{ 
 
-		High,
-		Low,
-		Middle,
-		Highest,
-		Lowest
+		Highest = 5,
+		High = 4,
+        Medium = 3,
+		Low = 2,
+		Lowest = 1
 	}
 
 }

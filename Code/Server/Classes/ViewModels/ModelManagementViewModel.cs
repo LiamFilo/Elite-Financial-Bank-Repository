@@ -9,14 +9,14 @@ namespace Server.Classes
 {
     public class ModelManagemetViewModel
     {
-        private ConnectedUsers ConnectedUsers { get; }
+        private ConnectedUsers _connectedUsers;
         private PriorityQueue _priorityQueue;
 
         public PriorityQueue PriorityQueue { get { return _priorityQueue; } }
 
         public ModelManagemetViewModel()
         {
-            ConnectedUsers = new ConnectedUsers();
+            _connectedUsers = new ConnectedUsers();
             _priorityQueue = new PriorityQueue();
         }
 

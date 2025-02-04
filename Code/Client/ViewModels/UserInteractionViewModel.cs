@@ -21,7 +21,9 @@ namespace Client
         {
             try
             {
-                ClientViewModel.Instance.ModelManagemetVM.ExecuteCommandInModel(command);
+                Console.WriteLine($"User Interaction get command from type {command.CommandType}");
+                ClientViewModel.Instance.BCPManagerVM.SendPacketToServer(command);
+                //ClientViewModel.Instance.ModelManagemetVM.ExecuteCommandInModel(command);
             }
             catch (Exception ex) {ExceptionHandler.ExceptionHandle(ex);}
         }

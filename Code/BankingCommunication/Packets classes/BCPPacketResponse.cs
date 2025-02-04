@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace BankingCommunication
 {
+    [Serializable]
     /// <summary>
     /// Represent a BCP packet that server send to the client.
     /// </summary>

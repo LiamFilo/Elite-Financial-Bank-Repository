@@ -4,185 +4,124 @@ using System.Net.Sockets;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Net.NetworkInformation;
+using System.Runtime.Serialization;
+using System.ComponentModel.Design;
 
 namespace BankingCommunication
 {
     public class Connection : IDisposable
     {
-        private const string SERVER_IP = "127.21.12.4"; // Can make configurable
-        private const int SERVER_PORT = 43;            // Can make configurable
-        private const int DELAY_IN_MILLISECONDS = 100; // Typo fixed (DELEY -> DELAY)
-        public event EventHandler<bool> ConnectionStatusChanged;
-        public bool IsConnected {get; private set;}
-
-
-
-        public event EventHandler<PacketReceivedEventArgs> GotPacket;
-
+        #region Data-Members
         private Socket _socket;
-        private CancellationTokenSource _cancellationTokenSource;
-
         private NetworkStream _networkStream;
-        private NetworkStream NetworkStream
+        private StreamWriter _writer; 
+        private Thread _listeningThread;
+        private bool _keepListening;
+        public event EventHandler<PacketReceivedEventArgs> GotPacket;
+        public event EventHandler<EventArgs> CommunicationDisconnect;
+        #endregion
+
+        public Connection(Socket socket)
         {
-            get => _networkStream;
-            set
-            {
-                _networkStream?.Dispose();
-                _networkStream = value;
-                IsConnected = false;
-            }
+            _socket = socket;
+            _networkStream = new NetworkStream(socket);
+            _writer = new StreamWriter(_networkStream, System.Text.Encoding.UTF8, 1024, leaveOpen: true);
+            _listeningThread = new Thread(Listen2Messages);
+            _listeningThread.IsBackground = true;
+            _keepListening = socket.Connected;
         }
 
-        public Connection()
-        {
-            _cancellationTokenSource = new CancellationTokenSource();
+        public bool IsConnected { get { return _socket != null ? _socket.Connected : false; } }
 
+        public void StartListening()
+        {
+            _keepListening = true;
+            _listeningThread.Start();
         }
 
-        // **Added: ConnectAsync method to initialize the socket and establish connection**
-        public async Task ConnectAsync()
+        private void Listen2Messages()
         {
-            try
+            Console.WriteLine("start listening to packets");
+            using (var reader = new StreamReader(_networkStream, System.Text.Encoding.UTF8, false, 1024, leaveOpen: true))
             {
-                _socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-                await _socket.ConnectAsync(SERVER_IP, SERVER_PORT); // Establish connection
-                NetworkStream = new NetworkStream(_socket, true);
-
-                // Start monitoring connection status
-                _ = MonitorConnectionStatusAsync();
-            }
-            catch (Exception ex)
-            {
-                throw new InvalidOperationException("Error connecting to the server.", ex);
-            }
-        }
-
-        /// <summary>
-        /// Starts listening for incoming messages asynchronously.
-        /// </summary>
-        public async Task ListenToMessagesAsync()
-        {
-            if (_socket == null || !(_socket.Connected))
-                throw new InvalidOperationException("Socket is not connected. Call ConnectAsync first.");
-
-            try
-            {
-                while (!_cancellationTokenSource.Token.IsCancellationRequested)
+                while (_keepListening)
                 {
-                    await ProcessIncomingPacketsAsync();
-                    await Task.Delay(DELAY_IN_MILLISECONDS);
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new InvalidOperationException("Error in connection listening loop.", ex);
-            }
-        }
-
-        /// <summary>
-        /// Processes incoming packets and triggers the GotPacket event.
-        /// </summary>
-        private async Task ProcessIncomingPacketsAsync()
-        {
-            int readableSocketBytes = _socket.Available; // Fixed case (ReadableSocketBytes -> readableSocketBytes)
-
-            if (readableSocketBytes > 0)
-            {
-                try
-                {
-                    using (var reader = new StreamReader(NetworkStream, leaveOpen: true)) // Leave stream open
+                    Console.WriteLine("Wait for packet...");
+                    try
                     {
-                        var json = await reader.ReadLineAsync(); // Changed ReadToEndAsync to ReadLineAsync
-                        if (string.IsNullOrEmpty(json)) return; // Skip empty or invalid JSON
+                        string jsonLine = reader.ReadLine();
+                        if (string.IsNullOrEmpty(jsonLine))
+                        {
+                            Console.WriteLine("string.IsNullOrEmpty(jsonLine)");
+                            continue;
+                        }
+                            
 
-                        IPacket packet = JsonSerializer.Deserialize<IPacket>(json)
-                            ?? throw new NullReferenceException("The BCP packet can't be null");
-
-                        GotPacket?.Invoke(this, new PacketReceivedEventArgs(packet));
+                        IPacket packetReceived = JsonSerializer.Deserialize<BCPPacketRequest>(jsonLine);
+                        if (packetReceived != null)
+                        {
+                            GotPacket?.Invoke(this, new PacketReceivedEventArgs(packetReceived));
+                        }
+                        else
+                        {
+                            Console.WriteLine("the packet is null");
+                        }
+                    }
+                    catch (SerializationException ex)
+                    {
+                        Console.WriteLine("new exception \n " + ex.Message);
+                        break;
+                    }
+                    catch (IOException ex)
+                    {
+                        Console.WriteLine("new exception \n " + ex.Message);
+                        break;
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("new exception \n" + ex.Message);
                     }
                 }
-                catch (JsonException jsonEx)
-                {
-                    throw new InvalidOperationException("JSON deserialization error while processing packet.", jsonEx); // Specific exception for JSON errors
-                }
-                catch (IOException ioEx)
-                {
-                    throw new InvalidOperationException("I/O Error while receiving packet.", ioEx);
-                }
-                catch (Exception ex)
-                {
-                    throw new InvalidOperationException("Error while processing packet.", ex);
-                }
             }
         }
 
-        /// <summary>
-        /// Sends a packet to the server.
-        /// </summary>
-        public async Task SendPacketAsync(IPacket packetToSend)
+        public void Send(IPacket packetToSend)
         {
-            
-
             try
             {
-                using (var writer = new StreamWriter(NetworkStream, leaveOpen: true)) // Leave stream open
+                if (packetToSend == null)
+                    Console.WriteLine("packet to send is null");
+
+                BCPPacketRequest requestPacket = (BCPPacketRequest)packetToSend;
+                
+
+                var options = new JsonSerializerOptions
                 {
-                    var json = JsonSerializer.Serialize(packetToSend);
-                    await writer.WriteLineAsync(json); // Changed to WriteLineAsync
-                    await writer.FlushAsync();
-                }
+                    IncludeFields = true
+                };
+                string jsonString = JsonSerializer.Serialize(requestPacket, options);
+
+                Console.WriteLine("send jason: " + jsonString);
+                _writer.WriteLine(jsonString);
+                _writer.Flush();
             }
             catch (Exception ex)
             {
-                throw new InvalidOperationException("Error in SendPacketAsync.", ex);
-            }
-        }
-
-        
-        /// <summary>
-        /// Releases unmanaged resources and gracefully shuts down connections.
-        /// </summary>
-     
-        private async Task MonitorConnectionStatusAsync()
-        {
-            bool previousStatus = IsConnected;
-
-            while (!_cancellationTokenSource.Token.IsCancellationRequested)
-            {
-                bool currentStatus = IsConnected;
-
-                if (currentStatus != previousStatus)
-                {
-                    ConnectionStatusChanged?.Invoke(this, currentStatus);
-                    previousStatus = currentStatus;
-                }
-
-                await Task.Delay(DELAY_IN_MILLISECONDS);
+                Console.WriteLine("exception in sending: " + ex.Message);
             }
         }
 
         public void Dispose()
         {
-            try
-            {
-                _cancellationTokenSource.Cancel();
-                NetworkStream = null;
-                if (_socket != null && _socket.Connected)
-                {
-                    _socket.Shutdown(SocketShutdown.Both);
-                    _socket.Close();
-                }
-            }
-            catch (ObjectDisposedException ex)
-            {
-                throw new InvalidOperationException("Resource already disposed.", ex);
-            }
-            catch (Exception ex)
-            {
-                throw new InvalidOperationException("Error in Dispose.", ex);
-            }
-
+            Console.WriteLine("מבצע Dispose");
+            _keepListening = false;
+            _writer?.Dispose();
+            _networkStream.Dispose();
+            _socket.Dispose();
+            CommunicationDisconnect?.Invoke(this, EventArgs.Empty);
         }
     }
+
 }
+    

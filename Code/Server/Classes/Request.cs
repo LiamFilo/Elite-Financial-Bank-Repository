@@ -12,10 +12,13 @@ namespace Server.Classes
         public ICommand CommandToExecute { get; }
         public RequestPriority Priority { get; }    
 
-        public Request(ICommand commandToExecute, RequestPriority priority)
+        public string UserID { get; }   
+
+        public Request(ICommand commandToExecute, RequestPriority priority, string UserID)
         {
             CommandToExecute = commandToExecute;
             Priority = priority;
+            this.UserID = UserID;
         }
     }
 }
